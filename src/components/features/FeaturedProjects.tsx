@@ -26,7 +26,7 @@ export default function FeaturedProjects() {
             Featured <span className="text-emerald-400">Projects</span>
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Beberapa project yang pernah saya kerjakan.
+            Beberapa project yang pernah saya kerjakan / kontribusi.
           </p>
         </motion.div>
 

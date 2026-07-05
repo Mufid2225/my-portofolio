@@ -40,7 +40,7 @@ export default function ProjectsPage() {
             All <span className="text-emerald-400">Projects</span>
           </h1>
           <p className="mt-2 text-muted-foreground">
-            Berikut adalah project-project yang pernah saya kerjakan.
+            Berikut adalah project-project yang pernah saya kerjakan / kontribusi.
           </p>
         </motion.div>
 
