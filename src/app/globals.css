@@ -140,3 +140,18 @@
     @apply font-sans scroll-smooth;
   }
 }
+
+@keyframes grid-shift {
+  0% { background-position: 0 0; }
+  100% { background-position: 60px 60px; }
+}
+
+.animated-grid {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.4) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+  animation: grid-shift 12s linear infinite;
+}

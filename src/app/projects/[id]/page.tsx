@@ -6,7 +6,15 @@ import { useState } from "react";
 import { useParams } from "next/navigation";
 import { projects } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export default function ProjectDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -23,13 +31,21 @@ export default function ProjectDetailPage() {
   return (
     <div className="px-4 py-20">
       <div className="mx-auto max-w-4xl">
-        <Link
-          href="/projects"
-          className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Back to projects
-        </Link>
+        <Breadcrumb className="mb-8">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/projects">Projects</BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>{project.title}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
 
         <article>
           <div className="group relative mb-8 aspect-video overflow-hidden rounded-lg border border-border/40 bg-muted">
@@ -45,13 +61,13 @@ export default function ProjectDetailPage() {
               <>
                 <button
                   onClick={prev}
-                  className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+                  className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground transition-opacity hover:bg-background md:opacity-0 md:group-hover:opacity-100"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
                   onClick={next}
-                  className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+                  className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground transition-opacity hover:bg-background md:opacity-0 md:group-hover:opacity-100"
                 >
                   <ChevronRight className="h-5 w-5" />
                 </button>

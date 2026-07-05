@@ -90,4 +90,6 @@ export const socialLinks = {
   instagramUsername: "@fidnotpid_",
   telegram: "https://t.me/liltrustcorner",
   telegramUsername: "1dleraa",
+  tiktok: "https://tiktok.com/@fidnotpid_",
+  spotify: "https://open.spotify.com/user/ukzr6gcxytbxxc6omkq7cw3yl?si=X9NzvxqFS8qjPj8pjpWe4A",
 };
