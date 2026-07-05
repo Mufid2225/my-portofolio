@@ -1,19 +1,24 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { notFound } from "next/navigation";
+import { useState } from "react";
+import { useParams } from "next/navigation";
 import { projects } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default function ProjectDetailPage() {
+  const { id } = useParams<{ id: string }>();
   const project = projects.find((p) => p.id === id);
 
-  if (!project) notFound();
+  if (!project) return null;
+
+  const images = [project.image, ...(project.screenshots ?? [])];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prev = () => setCurrentIndex((i) => (i === 0 ? images.length - 1 : i - 1));
+  const next = () => setCurrentIndex((i) => (i === images.length - 1 ? 0 : i + 1));
 
   return (
     <div className="px-4 py-20">
@@ -27,14 +32,45 @@ export default async function ProjectDetailPage({
         </Link>
 
         <article>
-          <div className="relative mb-8 aspect-video overflow-hidden rounded-lg border border-border/40 bg-muted">
+          <div className="group relative mb-8 aspect-video overflow-hidden rounded-lg border border-border/40 bg-muted">
             <Image
-              src={project.image}
-              alt={project.title}
+              src={images[currentIndex]}
+              alt={`${project.title} screenshot ${currentIndex + 1}`}
               fill
               className="object-cover"
-              priority
+              sizes="(max-width: 768px) 100vw, 768px"
             />
+
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={next}
+                  className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-background/80 p-2 text-foreground opacity-0 transition-opacity hover:bg-background group-hover:opacity-100"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+
+                <div className="absolute bottom-3 left-1/2 z-10 -translate-x-1/2 flex gap-1.5">
+                  {images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentIndex(i)}
+                      className={`h-1.5 rounded-full transition-all ${
+                        i === currentIndex
+                          ? "w-6 bg-emerald-400"
+                          : "w-1.5 bg-background/60 hover:bg-background/80"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           <h1 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">

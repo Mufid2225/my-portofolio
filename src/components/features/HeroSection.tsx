@@ -86,7 +86,7 @@ export default function HeroSection() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl"
       >
-        Frontend Developer yang passionate membangun web modern dengan pengalaman user yang luar biasa.
+        Frontend Developer yang suka coba-coba berbagai hal dan punya rasa penasaran yang tinggi.
       </motion.p>
 
       <motion.div

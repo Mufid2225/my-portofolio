@@ -26,7 +26,7 @@ export default function FeaturedProjects() {
             Featured <span className="text-emerald-400">Projects</span>
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Beberapa project terbaik yang pernah saya kerjakan.
+            Beberapa project yang pernah saya kerjakan.
           </p>
         </motion.div>
 
@@ -87,17 +87,19 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-10 flex justify-center"
-        >
-          <InteractiveHoverButton
-            text="Lihat Semua"
-            onClick={() => router.push("/projects")}
-          />
-        </motion.div>
+        {featured.length > 3 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-10 flex justify-center"
+          >
+            <InteractiveHoverButton
+              text="Lihat Semua"
+              onClick={() => router.push("/projects")}
+            />
+          </motion.div>
+        )}
       </div>
     </section>
   );

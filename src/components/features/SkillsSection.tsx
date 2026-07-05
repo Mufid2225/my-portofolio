@@ -16,7 +16,7 @@ export default function SkillsSection() {
             Tech <span className="text-emerald-400">Stack</span>
           </h2>
           <p className="mt-2 text-muted-foreground">
-            Teknologi yang saya kuasai.
+            Teknologi yang saya pakai.
           </p>
         </motion.div>
 

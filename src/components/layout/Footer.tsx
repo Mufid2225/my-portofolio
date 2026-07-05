@@ -31,6 +31,14 @@ export default function Footer() {
           >
             Instagram
           </Link>
+          <Link
+            href={socialLinks.telegram}
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Telegram
+          </Link>
         </div>
       </div>
     </footer>
