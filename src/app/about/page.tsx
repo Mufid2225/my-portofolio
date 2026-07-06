@@ -192,6 +192,23 @@ export default function AboutPage() {
                         </div>
                       </div>
                     </div>
+                    <div className="rounded-lg border border-border/40 bg-secondary/30 p-3 transition-colors hover:border-emerald-500/30">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-sm font-medium text-foreground">Pelatihan Pemrograman PHP</p>
+                          <p className="text-xs text-muted-foreground">PHP Dasar Database MYSQLI Bootstrap</p>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => setCertPreview("/phpdasar.webp")}
+                            className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-emerald-400"
+                            title="Lihat Sertifikat"
+                          >
+                            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -204,7 +221,7 @@ export default function AboutPage() {
             </h1>
 
             <p className="mt-2 text-muted-foreground/60 text-sm italic">
-              &ldquo;Mencoba, belajar, dan berkembang setiap hari.&rdquo;
+              &ldquo;Mencoba, belajar, dan berkembang.&rdquo;
             </p>
 
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
