@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { skills, socialLinks } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
-import { Mail, MapPin, Send, Globe, Atom, FileType, FileCode, Server, Paintbrush, GitBranch, Download, X } from "lucide-react";
+import { Mail, MapPin, Send, Globe, Atom, FileType, FileCode, Server, Paintbrush, GitBranch, Database, Container, Download, X } from "lucide-react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -24,6 +24,11 @@ const skillIcons: Record<string, React.ElementType> = {
   "Node.js": Server,
   "Tailwind CSS": Paintbrush,
   Git: GitBranch,
+  Electron: Atom,
+  MySQL: Database,
+  SQLite: Database,
+  PostgreSQL: Database,
+  Docker: Container,
 };
 
 export default function AboutPage() {
@@ -87,7 +92,7 @@ export default function AboutPage() {
               <div className="flex flex-col items-center md:items-start">
                 <div className="relative h-64 w-64 overflow-hidden rounded-xl border-2 border-emerald-500/30 ring-2 ring-emerald-500/20 shadow-[0_0_40px_rgba(16,185,129,0.15)]">
                   <Image
-                    src="/avatar.webp"
+                    src="/profile/avatar.webp"
                     alt="Profile"
                     fill
                     className="object-cover object-[center_35%]"
@@ -149,7 +154,7 @@ export default function AboutPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <button
-                            onClick={() => setCertPreview("/UKBI.webp")}
+                            onClick={() => setCertPreview("/certificates/UKBI.webp")}
                             className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-emerald-400"
                             title="Lihat Sertifikat"
                           >
@@ -166,7 +171,7 @@ export default function AboutPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <button
-                            onClick={() => setCertPreview("/dirgantara.webp")}
+                            onClick={() => setCertPreview("/certificates/dirgantara.webp")}
                             className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-emerald-400"
                             title="Lihat Sertifikat"
                           >
@@ -183,7 +188,7 @@ export default function AboutPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <button
-                            onClick={() => setCertPreview("/augmented.webp")}
+                            onClick={() => setCertPreview("/certificates/augmented.webp")}
                             className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-emerald-400"
                             title="Lihat Sertifikat"
                           >
@@ -200,7 +205,7 @@ export default function AboutPage() {
                         </div>
                         <div className="flex items-center gap-1">
                           <button
-                            onClick={() => setCertPreview("/phpdasar.webp")}
+                            onClick={() => setCertPreview("/certificates/phpdasar.webp")}
                             className="rounded-md p-1.5 text-muted-foreground transition-colors hover:text-emerald-400"
                             title="Lihat Sertifikat"
                           >

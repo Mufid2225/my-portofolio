@@ -87,7 +87,7 @@ export default function FeaturedProjects() {
           ))}
         </div>
 
-        {featured.length > 3 && (
+        {projects.length > 3 && (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}

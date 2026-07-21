@@ -50,7 +50,7 @@ interface LogoColumnProps {
 
 // LogoColumn component: Displays a single column of animated logos
 const LogoColumn: React.FC<LogoColumnProps> = React.memo(
-  ({ logos, index, currentTime }) => {
+  function LogoColumn({ logos, index, currentTime }) {
     const cycleInterval = 2000 // Time each logo is displayed (in milliseconds)
     const columnDelay = index * 200 // Stagger the start of each column's animation
     // Calculate which logo should be displayed based on the current time
@@ -125,7 +125,6 @@ const LogoColumn: React.FC<LogoColumnProps> = React.memo(
 
 // Main LogoCarousel component
 function LogoCarousel({ columnCount: propColumnCount }: { columnCount?: number }) {
-  const [logoSets, setLogoSets] = useState<Logo[][]>([])
   const [currentTime, setCurrentTime] = useState(0)
   const [columnCount, setColumnCount] = useState(propColumnCount ?? 2)
 
@@ -146,15 +145,19 @@ function LogoCarousel({ columnCount: propColumnCount }: { columnCount?: number }
       { name: "Node.js", id: 5, img: NodejsIcon },
       { name: "Tailwind CSS", id: 6, img: TailwindCSSIcon },
       { name: "Git", id: 7, img: GitIcon },
+      { name: "Electron", id: 8, img: ElectronIcon },
+      { name: "MySQL", id: 9, img: MySQLIcon },
+      { name: "SQLite", id: 10, img: SQLiteIcon },
+      { name: "PostgreSQL", id: 11, img: PostgreSQLIcon },
+      { name: "Docker", id: 12, img: DockerIcon },
     ],
     []
   )
 
-  // Distribute logos across columns when the component mounts or columnCount changes
-  useEffect(() => {
-    const distributedLogos = distributeLogos(allLogos, columnCount)
-    setLogoSets(distributedLogos)
-  }, [allLogos, columnCount])
+  const logoSets = useMemo(
+    () => distributeLogos(allLogos, columnCount),
+    [allLogos, columnCount]
+  )
 
   // Function to update the current time (used for logo cycling)
   const updateTime = useCallback(() => {
@@ -189,6 +192,56 @@ function ReactIcon(props: SVGProps<SVGSVGElement>) {
       <ellipse cx="128" cy="114" rx="106" ry="32" fill="none" stroke="#00D8FF" strokeWidth="8" transform="rotate(60 128 114)"/>
       <ellipse cx="128" cy="114" rx="106" ry="32" fill="none" stroke="#00D8FF" strokeWidth="8" transform="rotate(120 128 114)"/>
       <circle cx="128" cy="114" r="28" fill="#00D8FF"/>
+    </svg>
+  )
+}
+
+function ElectronIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 256 256" width="256" height="256" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <ellipse cx="128" cy="128" rx="106" ry="42" fill="none" stroke="#9FEAF9" strokeWidth="8"/>
+      <ellipse cx="128" cy="128" rx="106" ry="42" fill="none" stroke="#9FEAF9" strokeWidth="8" transform="rotate(60 128 128)"/>
+      <ellipse cx="128" cy="128" rx="106" ry="42" fill="none" stroke="#9FEAF9" strokeWidth="8" transform="rotate(120 128 128)"/>
+      <circle cx="128" cy="128" r="16" fill="#9FEAF9"/>
+    </svg>
+  )
+}
+
+function MySQLIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <ellipse cx="32" cy="14" rx="24" ry="9" fill="#4479A1" />
+      <path d="M8 14v25c0 5 11 9 24 9s24-4 24-9V14c0 5-11 9-24 9S8 19 8 14Z" fill="#4479A1" fillOpacity=".75" />
+      <path d="M8 27c0 5 11 9 24 9s24-4 24-9M8 39c0 5 11 9 24 9s24-4 24-9" fill="none" stroke="#fff" strokeOpacity=".65" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function SQLiteIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <ellipse cx="32" cy="14" rx="24" ry="9" fill="#0F80CC" />
+      <path d="M8 14v25c0 5 11 9 24 9s24-4 24-9V14c0 5-11 9-24 9S8 19 8 14Z" fill="#0F80CC" fillOpacity=".75" />
+      <path d="M8 27c0 5 11 9 24 9s24-4 24-9M8 39c0 5 11 9 24 9s24-4 24-9" fill="none" stroke="#fff" strokeOpacity=".65" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function PostgreSQLIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <ellipse cx="32" cy="14" rx="24" ry="9" fill="#336791" />
+      <path d="M8 14v25c0 5 11 9 24 9s24-4 24-9V14c0 5-11 9-24 9S8 19 8 14Z" fill="#336791" fillOpacity=".75" />
+      <path d="M8 27c0 5 11 9 24 9s24-4 24-9M8 39c0 5 11 9 24 9s24-4 24-9" fill="none" stroke="#fff" strokeOpacity=".65" strokeWidth="2" />
+    </svg>
+  )
+}
+
+function DockerIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path fill="#2496ED" d="M13 27h7v7h-7zm8 0h7v7h-7zm8 0h7v7h-7zm-8-8h7v7h-7zm8 0h7v7h-7zm8 8h7v7h-7zm-8-16h7v7h-7z" />
+      <path fill="#2496ED" d="M56 29c-2-1-5-1-7 0-1-4-4-6-4-6s-3 4-1 9c-2 1-5 2-10 2H7c1 11 9 18 21 18 12 0 22-5 27-16 3 0 5-2 6-5-2-1-3-2-5-2Z" />
     </svg>
   )
 }

@@ -45,7 +45,7 @@ export default function HeroSection() {
             </div>
             <div className="relative h-full w-full overflow-hidden rounded-full border-2 border-emerald-500/30 ring-2 ring-emerald-500/20 shadow-[0_0_40px_rgba(16,185,129,0.15)]">
               <Image
-                src="/avatar.webp"
+                src="/profile/avatar.webp"
                 alt="Profile"
                 fill
                 className="object-cover object-[center_35%]"
