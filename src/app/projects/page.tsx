@@ -18,7 +18,7 @@ import {
 export default function ProjectsPage() {
   return (
     <div className="px-4 py-20">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <Breadcrumb className="mb-8">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -51,9 +51,10 @@ export default function ProjectsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
+              className="h-full"
             >
-              <Link href={`/projects/${project.id}`} className="group block">
-                <div className="overflow-hidden rounded-lg border border-border/40 bg-card transition-all duration-300 hover:border-emerald-500/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]">
+              <Link href={`/projects/${project.id}`} className="group block h-full">
+                <div className="flex h-full flex-col overflow-hidden rounded-lg border border-border/40 bg-card transition-all duration-300 hover:border-emerald-500/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)]">
                   <div className="relative aspect-video overflow-hidden bg-muted">
                     <Image
                       src={project.image}
@@ -62,7 +63,7 @@ export default function ProjectsPage() {
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-5">
+                  <div className="flex flex-1 flex-col p-5">
                     <h3 className="font-semibold text-foreground">
                       {project.title}
                     </h3>
@@ -80,7 +81,7 @@ export default function ProjectsPage() {
                         </Badge>
                       ))}
                     </div>
-                    <div className="mt-4 flex items-center gap-3 text-sm text-muted-foreground">
+                    <div className="mt-auto flex items-center gap-3 pt-4 text-sm text-muted-foreground">
                       {project.liveUrl && (
                         <span className="flex items-center gap-1 transition-colors group-hover:text-emerald-400">
                           <ExternalLink className="h-3.5 w-3.5" />

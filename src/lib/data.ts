@@ -129,6 +129,7 @@ export const projects: Project[] = [
     screenshots: [
       "/projects/profil-github/2aboutfocus.webp",
       "/projects/profil-github/3featured.webp",
+      "/projects/profil-github/5contribution.webp",
       "/projects/profil-github/4footer.webp",
     ],
     liveUrl: "https://github.com/Mufid2225",
@@ -149,6 +150,27 @@ export const projects: Project[] = [
     liveUrl: "https://t.me/nerrisa_Bot",
     githubUrl: "https://github.com/Mufid2225/ai-telegram-bot",
     featured: false,
+  },
+  {
+    id: "project-8",
+    title: "ZeroCost.ai",
+    description: "Direktori katalog penyedia AI, API, dan developer tools dengan free tier. Terdiri dari 15 penyedia AI yang sudah diverifikasi, teruji, dan dikatalogkan secara manual.",
+    longDescription: "ZeroCost.ai adalah direktori katalog penyedia AI, API, dan developer tools dengan free tier. Dibangun sebagai katalog yang terverifikasi — hanya admin yang menguji dan menambahkan penyedia setelah verifikasi. Pengguna dapat menjelajahi, mencari, memfilter, dan mengakses kode untuk integrasi instan.",
+    image: "/projects/zerocost/zerocost1.webp",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/Mufid2225/zerocost",
+    featured: false,
+    screenshots: [
+      "/projects/zerocost/zerocost2.webp",
+      "/projects/zerocost/zerocost3.webp",
+      "/projects/zerocost/zerocost4.webp",
+      "/projects/zerocost/zerocost5.webp",
+      "/projects/zerocost/zerocost6.webp",
+      "/projects/zerocost/zerocost7.webp",
+      "/projects/zerocost/zerocost8.webp",
+      "/projects/zerocost/zerocost9.webp",
+      "/projects/zerocost/zerocost10.webp",
+    ],
   },
 ];
 
