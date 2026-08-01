@@ -60,6 +60,13 @@ Asisten AI Telegram privat untuk analisis saham, market, dan ekonomi global; pen
 - Source: [Mufid2225/ai-telegram-bot](https://github.com/Mufid2225/ai-telegram-bot)
 - Stack: JavaScript, Node.js, Telegraf, SQLite, 9router, Tesseract.js
 
+### ZeroCost.ai
+
+Direktori katalog penyedia AI, API, dan developer tools dengan free tier. Terdiri dari 15 penyedia AI yang terverifikasi dan teruji, dengan pencarian real-time, filter kategori, halaman detail, bookmark, dark/light mode, serta admin dashboard untuk mengelola penyedia.
+
+- Source: [Mufid2225/zerocost](https://github.com/Mufid2225/zerocost)
+- Stack: Next.js, TypeScript, Tailwind CSS
+
 ## Fitur Portfolio
 
 - Homepage responsif dengan dark theme dan aksen emerald
