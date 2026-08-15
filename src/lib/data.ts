@@ -15,11 +15,10 @@ export const projects: Project[] = [
   {
     id: "project-1",
     title: "SiPena",
-    description: "Sistem Perizinan Akademik yang dirancang untuk memenuhi kebutuhan berbagai macam perizinan surat menyurat menggunakan platform digital",
-    longDescription: "Sistem Perizinan Akademik yang dirancang untuk memenuhi kebutuhan berbagai macam perizinan surat menyurat menggunakan platform digital",
+    description: "Sistem Perizinan Akademik (SiPena) untuk digitalisasi pengajuan & pengelolaan surat izin siswa, guru, dan staff. Multi-role auth, workflow approval, notifikasi real-time, OTP verifikasi, dan audit log.",
+    longDescription: "SiPena (Sistem Perizinan Akademik) adalah platform digital untuk mengelola seluruh siklus hayat surat izin di lingkungan sekolah — dari pengajuan oleh siswa/guru/staff, review multi-tingkat (wali kelas, BK, tu, kepsek), hingga penerbitan surat digital dengan QR code verifikasi. Fitur utama: login berbasis OTP & RBAC, dashboard peran (siswa, guru, admin), pengajuan izin sakit/acara/keluar sekolah, workflow approval bertahap, notifikasi real-time (WebSocket), riwayat & log aktivitas lengkap, cetak surat dengan barcode Code 128, serta panel admin untuk master data (kelas, guru, template surat, pengguna). Frontend Next.js + TypeScript + Tailwind; backend Go/Gin + MariaDB + Redis untuk caching & session.",
     image: "/projects/sipena/sipena.webp",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Go", "Gin", "MariaDB", "Redis"],
-    liveUrl: "https://www.sipena-smkn2.dedyn.io/",
     githubUrl: "https://github.com/e-letter/e-letter-web",
     featured: true,
     screenshots: [
@@ -171,6 +170,17 @@ export const projects: Project[] = [
       "/projects/zerocost/zerocost9.webp",
       "/projects/zerocost/zerocost10.webp",
     ],
+  },
+  {
+    id: "project-9",
+    title: "STARTOVER",
+    description: "Platform editorial financial intelligence untuk memahami pasar global & Indonesia melalui market data, analisis teknikal, berita keuangan, kalender ekonomi, sentiment/score/regime/risk deterministik, watchlist, dan pencarian global.",
+    longDescription: "STARTOVER adalah platform riset pasar yang dirancang sebagai produk editorial tenang, bukan dashboard trading generik. Menyediakan: overview pasar editorial, daftar & detail pasar, feed berita, kalender ekonomi, daily brief, UI ask analyst, watchlist lokal anonim, pencarian global, filter fungsional, tema terang/gelap, navigasi responsif, interaksi Motion, dukungan loading/error/empty/reduced-motion, indikator teknikal (SMA, EMA, RSI, momentum, volatility), sentiment/score/regime/risk/evidence deterministik, registry provider dengan validasi/normalisasi/deduplikasi/freshness/health, metadata provenance. Semua data eksternal saat ini SIMULASI (mock provider). Arsitektur siap untuk integrasi provider real dan persistensi PostgreSQL.",
+    image: "/projects/startover/1hero.svg",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Motion", "Zod", "Drizzle ORM", "PostgreSQL", "Redis", "Bun"],
+    githubUrl: "https://github.com/Mufid2225/startover",
+    featured: false,
+    screenshots: [],
   },
 ];
 

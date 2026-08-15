@@ -67,6 +67,13 @@ Direktori katalog penyedia AI, API, dan developer tools dengan free tier. Terdir
 - Source: [Mufid2225/zerocost](https://github.com/Mufid2225/zerocost)
 - Stack: Next.js, TypeScript, Tailwind CSS
 
+### STARTOVER
+
+Platform editorial financial intelligence untuk memahami pasar global dan Indonesia. Menyediakan market data, analisis teknikal, berita keuangan, kalender ekonomi, sentiment/score/regime/risk deterministik, watchlist, pencarian global, serta UI riset yang tenang (bukan trading dashboard). Data saat ini simulasi (mock provider), arsitektur siap untuk provider real dan persistensi PostgreSQL.
+
+- Source: [Mufid2225/startover](https://github.com/Mufid2225/startover)
+- Stack: Next.js, React, TypeScript, Tailwind CSS, Motion, Zod, Drizzle ORM, PostgreSQL, Redis, Bun
+
 ## Fitur Portfolio
 
 - Homepage responsif dengan dark theme dan aksen emerald
