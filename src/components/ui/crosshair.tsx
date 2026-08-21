@@ -148,7 +148,7 @@ export default function Crosshair({
         turbulence: 0,
       });
 
-    // Dynamic Event Delegation on document for all clickable elements
+    // Dynamic Event Delegation — triggers glitch on all interactive + grouped elements
     const isInteractive = (element: Element | null): boolean => {
       if (!element) return false;
       return Boolean(
@@ -159,6 +159,16 @@ export default function Crosshair({
     };
 
     let lastInteractiveEl: Element | null = null;
+    // Debounce tl.restart to prevent SVG filter thrashing when cursor moves fast inside a card
+    let restartScheduled = false;
+    const scheduleRestart = () => {
+      if (restartScheduled) return;
+      restartScheduled = true;
+      setTimeout(() => {
+        tl.restart();
+        restartScheduled = false;
+      }, 16); // ~1 frame debounce is enough to collapse rapid mouseover bursts
+    };
 
     const handleMouseOver = (e: MouseEvent) => {
       const el = e.target as Element | null;
@@ -168,7 +178,7 @@ export default function Crosshair({
 
       if (interactiveParent && interactiveParent !== lastInteractiveEl) {
         lastInteractiveEl = interactiveParent;
-        tl.restart();
+        scheduleRestart();
         if (lineHorizontalRef.current && lineVerticalRef.current) {
           gsap.to([lineHorizontalRef.current, lineVerticalRef.current], {
             boxShadow: "0 0 10px rgba(255, 255, 255, 0.9)",

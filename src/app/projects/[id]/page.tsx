@@ -17,6 +17,9 @@ import {
   Layers,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import Dither from "@/components/ui/Dither";
+
+const DITHER_COLOR: [number, number, number] = [0.75, 0.75, 0.75];
 
 function GithubIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -65,11 +68,25 @@ export default function ProjectDetailPage() {
   const next = () => setCurrentIndex((i) => (i === images.length - 1 ? 0 : i + 1));
 
   return (
-    <div className="relative min-h-screen pt-24 pb-24 px-4 sm:px-6 overflow-hidden">
-      {/* Background Subtle Ambient Glow & Grid */}
-      <div className="pointer-events-none absolute inset-0 animated-grid opacity-15" />
-      <div className="pointer-events-none absolute left-1/2 top-32 -translate-x-1/2 h-96 w-[800px] rounded-full bg-white/[0.02] blur-[140px]" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+    <div className="relative min-h-screen pt-6 sm:pt-8 pb-24 px-4 sm:px-6 overflow-hidden">
+      {/* ─── Ambient WebGL Dither Wave Background ─── */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <Dither
+          waveColor={DITHER_COLOR}
+          disableAnimation={false}
+          enableMouseInteraction={false}
+          mouseRadius={0.35}
+          colorNum={4}
+          waveAmplitude={0.35}
+          waveFrequency={2.5}
+          waveSpeed={0.005}
+          pixelSize={2.5}
+          className="opacity-40"
+        />
+        {/* Cinematic depth vignette overlays */}
+        <div className="pointer-events-none absolute inset-0 bg-[#030303]/60" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-5xl">
         {/* Terminal Monospace Breadcrumbs */}

@@ -15,94 +15,123 @@ export interface DitherProps {
   className?: string;
 }
 
-// Bayer 8x8 Dithering Matrix
-const BAYER_8X8 = [
-  0.0 / 64.0, 48.0 / 64.0, 12.0 / 64.0, 60.0 / 64.0, 3.0 / 64.0, 51.0 / 64.0, 15.0 / 64.0, 63.0 / 64.0,
-  32.0 / 64.0, 16.0 / 64.0, 44.0 / 64.0, 28.0 / 64.0, 35.0 / 64.0, 19.0 / 64.0, 47.0 / 64.0, 31.0 / 64.0,
-  8.0 / 64.0, 56.0 / 64.0, 4.0 / 64.0, 52.0 / 64.0, 11.0 / 64.0, 59.0 / 64.0, 7.0 / 64.0, 55.0 / 64.0,
-  40.0 / 64.0, 24.0 / 64.0, 36.0 / 64.0, 20.0 / 64.0, 43.0 / 64.0, 27.0 / 64.0, 39.0 / 64.0, 23.0 / 64.0,
-  2.0 / 64.0, 50.0 / 64.0, 14.0 / 64.0, 62.0 / 64.0, 1.0 / 64.0, 49.0 / 64.0, 13.0 / 64.0, 61.0 / 64.0,
-  34.0 / 64.0, 18.0 / 64.0, 46.0 / 64.0, 30.0 / 64.0, 33.0 / 64.0, 17.0 / 64.0, 45.0 / 64.0, 29.0 / 64.0,
-  10.0 / 64.0, 58.0 / 64.0, 6.0 / 64.0, 54.0 / 64.0, 9.0 / 64.0, 57.0 / 64.0, 5.0 / 64.0, 53.0 / 64.0,
-  42.0 / 64.0, 26.0 / 64.0, 38.0 / 64.0, 22.0 / 64.0, 41.0 / 64.0, 25.0 / 64.0, 37.0 / 64.0, 21.0 / 64.0,
+// Bayer 8x8 ordered dithering matrix as LUMINANCE uint8 texture data
+const BAYER_SRC = [
+   0, 48, 12, 60,  3, 51, 15, 63,
+  32, 16, 44, 28, 35, 19, 47, 31,
+   8, 56,  4, 52, 11, 59,  7, 55,
+  40, 24, 36, 20, 43, 27, 39, 23,
+   2, 50, 14, 62,  1, 49, 13, 61,
+  34, 18, 46, 30, 33, 17, 45, 29,
+  10, 58,  6, 54,  9, 57,  5, 53,
+  42, 26, 38, 22, 41, 25, 37, 21,
 ];
+const BAYER_8X8 = new Uint8Array(BAYER_SRC.map((v) => Math.round((v / 64) * 255)));
 
-// Fast 2D Simplex noise implementation
-function createNoise2D() {
-  const perm = new Uint8Array(512);
-  const p = new Uint8Array(256);
-  for (let i = 0; i < 256; i++) p[i] = i;
-  for (let i = 255; i > 0; i--) {
-    const n = Math.floor((i + 1) * Math.sin(i * 12.9898) * 43758.5453) & 255;
-    const q = p[i];
-    p[i] = p[n];
-    p[n] = q;
+const VERT = `
+  attribute vec2 a_pos;
+  void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+`;
+
+const FRAG = `
+  precision mediump float;
+  uniform vec2  u_res;
+  uniform float u_time;
+  uniform vec3  u_color;
+  uniform float u_colorNum;
+  uniform float u_freq;
+  uniform float u_amp;
+  uniform float u_pixel;
+  uniform sampler2D u_bayer;
+
+  vec3 _m3(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec2 _m2(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec3 _p3(vec3 x) { return _m3(((x * 34.0) + 1.0) * x); }
+
+  float snoise(vec2 v) {
+    const vec4 C = vec4(0.211324865, 0.366025404, -0.577350270, 0.024390244);
+    vec2 i  = floor(v + dot(v, C.yy));
+    vec2 x0 = v - i + dot(i, C.xx);
+    vec2 i1  = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec4 x12 = x0.xyxy + C.xxzz;
+    x12.xy  -= i1;
+    i = _m2(i);
+    vec3 p = _p3(_p3(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+    vec3 m  = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
+    m = m * m * m * m;
+    vec3 x2 = 2.0 * fract(p * C.www) - 1.0;
+    vec3 h   = abs(x2) - 0.5;
+    vec3 a0  = x2 - floor(x2 + 0.5);
+    m *= 1.79284291 - 0.85373472 * (a0 * a0 + h * h);
+    vec3 g;
+    g.x  = a0.x  * x0.x   + h.x  * x0.y;
+    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+    return 130.0 * dot(m, g);
   }
-  for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
 
-  const F2 = 0.5 * (Math.sqrt(3.0) - 1.0);
-  const G2 = (3.0 - Math.sqrt(3.0)) / 6.0;
-
-  return function noise2D(xin: number, yin: number): number {
-    let n0 = 0, n1 = 0, n2 = 0;
-    const s = (xin + yin) * F2;
-    const i = Math.floor(xin + s);
-    const j = Math.floor(yin + s);
-    const t = (i + j) * G2;
-    const X0 = i - t;
-    const Y0 = j - t;
-    const x0 = xin - X0;
-    const y0 = yin - Y0;
-
-    let i1 = 0, j1 = 0;
-    if (x0 > y0) {
-      i1 = 1;
-      j1 = 0;
-    } else {
-      i1 = 0;
-      j1 = 1;
+  float fbm(vec2 p) {
+    float v = 0.0, a = 1.0;
+    for (int i = 0; i < 3; i++) {
+      v += a * abs(snoise(p));
+      p *= u_freq;
+      a *= u_amp;
     }
+    return v;
+  }
 
-    const x1 = x0 - i1 + G2;
-    const y1 = y0 - j1 + G2;
-    const x2 = x0 - 1.0 + 2.0 * G2;
-    const y2 = y0 - 1.0 + 2.0 * G2;
+  void main() {
+    vec2 fc = floor(gl_FragCoord.xy / u_pixel) * u_pixel + 0.5;
+    vec2 uv = (fc / u_res) - 0.5;
+    uv.x   *= u_res.x / u_res.y;
 
-    const ii = i & 255;
-    const jj = j & 255;
+    vec2  pp = uv - u_time;
+    float f1 = fbm(pp);
+    float f  = fbm(uv + f1);
 
-    let t0 = 0.5 - x0 * x0 - y0 * y0;
-    if (t0 > 0) {
-      t0 *= t0;
-      const gi0 = perm[ii + perm[jj]] % 8;
-      const gx0 = gi0 < 4 ? (gi0 & 1 ? 1 : -1) : 0;
-      const gy0 = gi0 < 4 ? 0 : (gi0 & 1 ? 1 : -1);
-      n0 = t0 * t0 * (gx0 * x0 + gy0 * y0);
-    }
+    vec2  bp    = mod(floor(gl_FragCoord.xy / u_pixel), 8.0);
+    float bayer = texture2D(u_bayer, (bp + 0.5) / 8.0).r - 0.25;
 
-    let t1 = 0.5 - x1 * x1 - y1 * y1;
-    if (t1 > 0) {
-      t1 *= t1;
-      const gi1 = perm[ii + i1 + perm[jj + j1]] % 8;
-      const gx1 = gi1 < 4 ? (gi1 & 1 ? 1 : -1) : 0;
-      const gy1 = gi1 < 4 ? 0 : (gi1 & 1 ? 1 : -1);
-      n1 = t1 * t1 * (gx1 * x1 + gy1 * y1);
-    }
+    float inv       = u_colorNum - 1.0;
+    float colorStep = 1.0 / inv;
+    float val       = clamp(f + bayer * colorStep - 0.2, 0.0, 1.0);
+    float quantized = floor(val * inv + 0.5) / inv;
 
-    let t2 = 0.5 - x2 * x2 - y2 * y2;
-    if (t2 > 0) {
-      t2 *= t2;
-      const gi2 = perm[ii + 1 + perm[jj + 1]] % 8;
-      const gx2 = gi2 < 4 ? (gi2 & 1 ? 1 : -1) : 0;
-      const gy2 = gi2 < 4 ? 0 : (gi2 & 1 ? 1 : -1);
-      n2 = t2 * t2 * (gx2 * x2 + gy2 * y2);
-    }
+    gl_FragColor = vec4(u_color * quantized, 1.0);
+  }
+`;
 
-    return 70.0 * (n0 + n1 + n2);
-  };
+function makeShader(gl: WebGLRenderingContext, type: number, src: string): WebGLShader | null {
+  const s = gl.createShader(type);
+  if (!s) return null;
+  gl.shaderSource(s, src);
+  gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    console.error("[Dither] Shader compile error:", gl.getShaderInfoLog(s));
+    gl.deleteShader(s);
+    return null;
+  }
+  return s;
 }
 
-export default function Dither({
+function makeProgram(gl: WebGLRenderingContext): WebGLProgram | null {
+  const v = makeShader(gl, gl.VERTEX_SHADER,   VERT);
+  const f = makeShader(gl, gl.FRAGMENT_SHADER, FRAG);
+  if (!v || !f) return null;
+  const p = gl.createProgram();
+  if (!p) return null;
+  gl.attachShader(p, v);
+  gl.attachShader(p, f);
+  gl.linkProgram(p);
+  gl.deleteShader(v);
+  gl.deleteShader(f);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) {
+    console.error("[Dither] Program link error:", gl.getProgramInfoLog(p));
+    return null;
+  }
+  return p;
+}
+
+function DitherComponent({
   waveSpeed = 0.02,
   waveFrequency = 2.5,
   waveAmplitude = 0.35,
@@ -115,217 +144,128 @@ export default function Dither({
   className = "",
 }: DitherProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef    = useRef<HTMLCanvasElement>(null);
 
-  // Stable props reference so re-renders in parent never restart time or cause blink
-  const propsRef = useRef({
-    waveSpeed,
-    waveFrequency,
-    waveAmplitude,
-    waveColor,
-    colorNum,
-    pixelSize,
-    disableAnimation,
-    enableMouseInteraction,
-    mouseRadius,
-  });
-
-  propsRef.current = {
-    waveSpeed,
-    waveFrequency,
-    waveAmplitude,
-    waveColor,
-    colorNum,
-    pixelSize,
-    disableAnimation,
-    enableMouseInteraction,
-    mouseRadius,
-  };
+  const pr = useRef({ waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius });
+  pr.current = { waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius };
 
   useEffect(() => {
     const container = containerRef.current;
-    const canvas = canvasRef.current;
+    const canvas    = canvasRef.current;
     if (!container || !canvas) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const gl = (
+      canvas.getContext("webgl") ?? canvas.getContext("experimental-webgl")
+    ) as WebGLRenderingContext | null;
 
-    let animationFrameId: number;
-    const noise2D = createNoise2D();
+    if (!gl) return;
 
-    const mouse = {
-      x: -1000,
-      y: -1000,
-      targetX: -1000,
-      targetY: -1000,
-      active: false,
-    };
+    const program = makeProgram(gl);
+    if (!program) return;
 
-    let width = 0;
-    let height = 0;
-    let lowW = 0;
-    let lowH = 0;
-    let offscreenCanvas: HTMLCanvasElement | null = null;
-    let offscreenCtx: CanvasRenderingContext2D | null = null;
-    let imageData: ImageData | null = null;
-    let buf32: Uint32Array | null = null;
+    const quadBuf = gl.createBuffer()!;
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
 
-    const handleResize = () => {
-      width = container.clientWidth;
-      height = container.clientHeight;
-      if (width <= 0 || height <= 0) return;
+    const bayerTex = gl.createTexture()!;
+    gl.bindTexture(gl.TEXTURE_2D, bayerTex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, 8, 8, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, BAYER_8X8);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
 
-      canvas.width = width;
-      canvas.height = height;
+    const aPos  = gl.getAttribLocation(program,  "a_pos");
+    const uRes  = gl.getUniformLocation(program, "u_res");
+    const uTime = gl.getUniformLocation(program, "u_time");
+    const uCol  = gl.getUniformLocation(program, "u_color");
+    const uCN   = gl.getUniformLocation(program, "u_colorNum");
+    const uFreq = gl.getUniformLocation(program, "u_freq");
+    const uAmp  = gl.getUniformLocation(program, "u_amp");
+    const uPx   = gl.getUniformLocation(program, "u_pixel");
+    const uBay  = gl.getUniformLocation(program, "u_bayer");
 
-      const scale = Math.max(1, propsRef.current.pixelSize);
-      lowW = Math.max(1, Math.floor(width / scale));
-      lowH = Math.max(1, Math.floor(height / scale));
-
-      offscreenCanvas = document.createElement("canvas");
-      offscreenCanvas.width = lowW;
-      offscreenCanvas.height = lowH;
-      offscreenCtx = offscreenCanvas.getContext("2d", { willReadFrequently: true });
-
-      if (offscreenCtx) {
-        imageData = offscreenCtx.createImageData(lowW, lowH);
-        buf32 = new Uint32Array(imageData.data.buffer);
-      }
-    };
-
-    handleResize();
-    const resizeObserver = new ResizeObserver(handleResize);
-    resizeObserver.observe(container);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!propsRef.current.enableMouseInteraction) return;
-      const rect = canvas.getBoundingClientRect();
-      mouse.targetX = (e.clientX - rect.left) / (rect.width || 1);
-      mouse.targetY = (e.clientY - rect.top) / (rect.height || 1);
-      mouse.active = true;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.active = false;
-      mouse.targetX = -1000;
-      mouse.targetY = -1000;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-
-    const fbm = (px: number, py: number, freqVal: number, ampVal: number): number => {
-      let value = 0.0;
-      let amp = 1.0;
-      let freq = freqVal;
-      let cx = px;
-      let cy = py;
-
-      for (let i = 0; i < 4; i++) {
-        value += amp * Math.abs(noise2D(cx, cy));
-        cx *= freq;
-        cy *= freq;
-        amp *= ampVal;
-      }
-      return value;
-    };
-
+    let W = 0, H = 0;
     let time = 0;
 
-    const render = () => {
-      const {
-        waveSpeed: currentSpeed,
-        waveFrequency: currentFreq,
-        waveAmplitude: currentAmp,
-        waveColor: currentColor,
-        colorNum: currentColorNum,
-        disableAnimation: currentDisableAnim,
-        enableMouseInteraction: currentMouseEnabled,
-        mouseRadius: currentMouseRadius,
-      } = propsRef.current;
+    const drawFrame = (currentTime: number) => {
+      if (W <= 0 || H <= 0) return;
+      const p = pr.current;
 
-      if (!currentDisableAnim) {
-        // Continuous, smooth, non-repeating slow time increment
-        time += currentSpeed * 0.25;
-      }
+      gl.useProgram(program);
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-      if (mouse.active) {
-        mouse.x += (mouse.targetX - mouse.x) * 0.08;
-        mouse.y += (mouse.targetY - mouse.y) * 0.08;
-      }
+      gl.uniform2f(uRes,  W, H);
+      gl.uniform1f(uTime, currentTime);
+      gl.uniform3f(uCol,  p.waveColor[0], p.waveColor[1], p.waveColor[2]);
+      gl.uniform1f(uCN,   p.colorNum);
+      gl.uniform1f(uFreq, p.waveFrequency);
+      gl.uniform1f(uAmp,  p.waveAmplitude);
+      gl.uniform1f(uPx,   Math.max(1, p.pixelSize));
 
-      if (buf32 && imageData && offscreenCtx && lowW > 0 && lowH > 0) {
-        const aspect = lowW / lowH;
-        const invColorStep = currentColorNum - 1.0;
-        const colorStep = 1.0 / invColorStep;
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, bayerTex);
+      gl.uniform1i(uBay, 0);
 
-        const baseR = currentColor[0];
-        const baseG = currentColor[1];
-        const baseB = currentColor[2];
-
-        for (let y = 0; y < lowH; y++) {
-          const uvY = (y / lowH - 0.5);
-          const bayerRow = (y & 7) * 8;
-
-          for (let x = 0; x < lowW; x++) {
-            const uvX = (x / lowW - 0.5) * aspect;
-
-            const p2x = uvX - time;
-            const p2y = uvY - time;
-            const f1 = fbm(p2x, p2y, currentFreq, currentAmp);
-            let f = fbm(uvX + f1, uvY + f1, currentFreq, currentAmp);
-
-            if (currentMouseEnabled && mouse.active) {
-              const mouseNDC_x = (mouse.x - 0.5) * aspect;
-              const mouseNDC_y = (mouse.y - 0.5);
-              const dx = uvX - mouseNDC_x;
-              const dy = uvY - mouseNDC_y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-
-              if (dist < currentMouseRadius) {
-                const effect = 1.0 - (dist / currentMouseRadius);
-                f -= 0.45 * Math.max(0, Math.min(1, effect * effect));
-              }
-            }
-
-            const bayerVal = BAYER_8X8[bayerRow + (x & 7)] - 0.25;
-            let val = f + bayerVal * colorStep - 0.2;
-            val = Math.max(0.0, Math.min(1.0, val));
-            const quantized = Math.floor(val * invColorStep + 0.5) / invColorStep;
-
-            const r = Math.floor(quantized * baseR * 255);
-            const g = Math.floor(quantized * baseG * 255);
-            const b = Math.floor(quantized * baseB * 255);
-
-            buf32[y * lowW + x] = (255 << 24) | (b << 16) | (g << 8) | r;
-          }
-        }
-
-        offscreenCtx.putImageData(imageData, 0, 0);
-
-        ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(offscreenCanvas!, 0, 0, width, height);
-      }
-
-      animationFrameId = requestAnimationFrame(render);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
     };
 
-    render();
+    const resize = () => {
+      const newW = container.clientWidth;
+      const newH = container.clientHeight;
+      if (newW > 0 && newH > 0 && (W !== newW || H !== newH)) {
+        W = newW;
+        H = newH;
+        canvas.width  = W;
+        canvas.height = H;
+        gl.viewport(0, 0, W, H);
+        // Redraw immediately when resized so canvas buffer is never left empty/black
+        drawFrame(time);
+      }
+    };
+
+    // Initial resize + synchronous first frame paint immediately!
+    resize();
+    drawFrame(0);
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(container);
+
+    let raf = 0;
+    const render = () => {
+      const p = pr.current;
+      if (!p.disableAnimation) time += p.waveSpeed * 0.25;
+
+      drawFrame(time);
+      raf = requestAnimationFrame(render);
+    };
+
+    raf = requestAnimationFrame(render);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      resizeObserver.disconnect();
-      window.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(raf);
+      ro.disconnect();
+      gl.deleteProgram(program);
+      gl.deleteBuffer(quadBuf);
+      gl.deleteTexture(bayerTex);
     };
-  }, []); // Run once on mount!
+  }, []);
 
   return (
     <div
       ref={containerRef}
       className={`absolute inset-0 h-full w-full overflow-hidden ${className}`}
     >
-      <canvas ref={canvasRef} className="block h-full w-full pointer-events-none" />
+      <canvas
+        ref={canvasRef}
+        className="block h-full w-full pointer-events-none"
+      />
     </div>
   );
 }
+
+const Dither = React.memo(DitherComponent);
+export default Dither;
+

@@ -2,6 +2,8 @@
 
 import Dither from "@/components/ui/Dither";
 
+const WAVE_COLOR: [number, number, number] = [0.75, 0.75, 0.75];
+
 export default function ShapeHero({
   children,
 }: {
@@ -10,14 +12,14 @@ export default function ShapeHero({
   return (
     <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-[#030303]">
       <Dither
-        waveColor={[0.75, 0.75, 0.75]}
+        waveColor={WAVE_COLOR}
         disableAnimation={false}
-        enableMouseInteraction={true}
+        enableMouseInteraction={false}
         mouseRadius={0.35}
         colorNum={4}
         waveAmplitude={0.35}
         waveFrequency={2.5}
-        waveSpeed={0.015}
+        waveSpeed={0.006}
         pixelSize={2.5}
         className="opacity-90"
       />

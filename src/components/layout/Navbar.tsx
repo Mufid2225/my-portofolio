@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import LanguageToggle from "@/components/ui/language-toggle";
+import FpsCounter from "@/components/ui/FpsCounter";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,14 +24,18 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-zinc-950/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        {/* Brand / Logo in Monospace */}
-        <Link
-          href="/"
-          className="group flex items-center gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 transition-colors hover:text-white select-none"
-        >
-          <span className="h-2 w-2 rounded-full bg-white/70 transition-colors group-hover:bg-white animate-pulse" />
-          <span>MUFID // PORTFOLIO</span>
-        </Link>
+        {/* Left: Real-time FPS Telemetry + Brand Logo */}
+        <div className="flex items-center gap-2.5 sm:gap-3.5">
+          <FpsCounter />
+          <div className="hidden h-3.5 w-px bg-white/10 xs:block" />
+          <Link
+            href="/"
+            className="group flex items-center gap-2 font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-zinc-300 transition-colors hover:text-white select-none"
+          >
+            <span className="h-2 w-2 rounded-full bg-white/70 transition-colors group-hover:bg-white animate-pulse" />
+            <span>MUFID // PORTFOLIO</span>
+          </Link>
+        </div>
 
         {/* Desktop Navigation in Monospace */}
         <div className="hidden items-center gap-5 sm:flex">

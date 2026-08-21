@@ -7,6 +7,7 @@ import Link from "next/link";
 import { skills, socialLinks } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { useLanguage } from "@/context/LanguageContext";
+import Dither from "@/components/ui/Dither";
 import {
   Mail,
   MapPin,
@@ -99,16 +100,32 @@ const skillIcons: Record<string, React.ComponentType<{ className?: string }>> = 
   Ollama: Bot,
 };
 
+const DITHER_COLOR: [number, number, number] = [0.75, 0.75, 0.75];
+
 export default function AboutPage() {
   const [certPreview, setCertPreview] = useState<string | null>(null);
   const { t } = useLanguage();
 
   return (
-    <div className="relative min-h-screen pt-24 pb-24 px-4 sm:px-6 overflow-hidden">
-      {/* Background Subtle Ambient Glow & Grid */}
-      <div className="pointer-events-none absolute inset-0 animated-grid opacity-15" />
-      <div className="pointer-events-none absolute left-1/2 top-32 -translate-x-1/2 h-96 w-[800px] rounded-full bg-white/[0.02] blur-[140px]" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+    <div className="relative min-h-screen pt-6 sm:pt-8 pb-24 px-4 sm:px-6 overflow-hidden">
+      {/* ─── Ambient WebGL Dither Wave Background ─── */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <Dither
+          waveColor={DITHER_COLOR}
+          disableAnimation={false}
+          enableMouseInteraction={false}
+          mouseRadius={0.35}
+          colorNum={4}
+          waveAmplitude={0.35}
+          waveFrequency={2.5}
+          waveSpeed={0.005}
+          pixelSize={2.5}
+          className="opacity-40"
+        />
+        {/* Cinematic depth vignette overlays */}
+        <div className="pointer-events-none absolute inset-0 bg-[#030303]/60" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/90" />
+      </div>
 
       {/* Certificate Lightbox Modal */}
       <AnimatePresence>
@@ -288,14 +305,16 @@ export default function AboutPage() {
               </div>
 
               {/* Download CV Button */}
-              <button
-                type="button"
-                onClick={() => {}}
-                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white px-4 py-2 font-mono text-xs font-semibold text-black transition-all hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer"
+              <a
+                href="/cv/dummy-cv.pdf"
+                download="dummy-cv.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white px-4 py-2.5 font-mono text-xs font-semibold text-black transition-all hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer select-none"
               >
                 <Download className="h-3.5 w-3.5" />
                 <span>{t.about.downloadCv}</span>
-              </button>
+              </a>
             </div>
           </motion.div>
 
