@@ -1,6 +1,6 @@
 "use client";
 
-import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import Dither from "@/components/ui/Dither";
 
 export default function ShapeHero({
   children,
@@ -8,21 +8,29 @@ export default function ShapeHero({
   children?: React.ReactNode;
 }) {
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-white dark:bg-[#030303]">
-      <FlickeringGrid
-        color="#10b981"
-        maxOpacity={0.15}
-        flickerChance={0.5}
-        squareSize={6}
-        gridGap={8}
-        className="absolute inset-0 h-full w-full"
+    <div className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden bg-[#030303]">
+      <Dither
+        waveColor={[0.75, 0.75, 0.75]}
+        disableAnimation={false}
+        enableMouseInteraction={true}
+        mouseRadius={0.35}
+        colorNum={4}
+        waveAmplitude={0.35}
+        waveFrequency={2.5}
+        waveSpeed={0.015}
+        pixelSize={2.5}
+        className="opacity-90"
       />
 
-      <div className="container relative z-10 mx-auto px-4 md:px-6">
+      <div className="container relative z-10 mx-auto px-4 pt-24 sm:pt-28 pb-16 md:px-6">
         <div className="mx-auto max-w-4xl text-center">{children}</div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-background to-transparent" />
     </div>
   );
 }
+
+
+

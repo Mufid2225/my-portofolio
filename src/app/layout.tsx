@@ -25,6 +25,11 @@ export const metadata: Metadata = {
     template: "%s | Portofolio",
   },
   description: "Personal portfolio website",
+  icons: {
+    icon: "/icons/logo_porto.png",
+    shortcut: "/icons/logo_porto.png",
+    apple: "/icons/logo_porto.png",
+  },
 };
 
 export default function RootLayout({

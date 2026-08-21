@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 type ButtonProps = {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: React.ElementType;
+  as?: React.ElementType<{ className?: string; style?: React.CSSProperties; children?: React.ReactNode }>;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;

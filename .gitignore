@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE — editor-specific settings, not needed in repo
+.vscode/
+.idea/
+
+# package-lock.json — redundant, project uses bun.lock
+package-lock.json
+
+# build log
+build.log

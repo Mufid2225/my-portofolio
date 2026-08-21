@@ -24,7 +24,7 @@ export function useToast() {
   return ctx;
 }
 
-const icons: Record<ToastType, React.ElementType> = {
+const icons: Record<ToastType, React.ComponentType<{ className?: string }>> = {
   success: CheckCircle,
   error: AlertTriangle,
   warning: AlertCircle,
@@ -32,7 +32,7 @@ const icons: Record<ToastType, React.ElementType> = {
 };
 
 const styles: Record<ToastType, string> = {
-  success: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
+  success: "border-white/30 bg-white/10 text-white",
   error: "border-red-500/30 bg-red-500/10 text-red-400",
   warning: "border-yellow-500/30 bg-yellow-500/10 text-yellow-400",
   info: "border-blue-500/30 bg-blue-500/10 text-blue-400",

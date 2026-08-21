@@ -21,7 +21,7 @@ export default function ErrorPage({
   }, [error, toast]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#030303] px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ export default function ErrorPage({
       >
         <AlertTriangle className="mx-auto h-16 w-16 text-red-400" />
         <h1 className="mt-6 text-3xl font-bold text-foreground">
-          Oops, <span className="text-emerald-400">Error</span>
+          Oops, <span className="text-white">Error</span>
         </h1>
         <p className="mt-2 text-muted-foreground">
           Ada sesuatu yang salah. Coba refresh halaman.
@@ -39,7 +39,7 @@ export default function ErrorPage({
         </p>
         <button
           onClick={reset}
-          className="mt-6 rounded-lg bg-emerald-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-600"
+          className="mt-6 rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-black transition-colors hover:bg-zinc-200"
         >
           Coba Lagi
         </button>
@@ -47,3 +47,4 @@ export default function ErrorPage({
     </div>
   );
 }
+

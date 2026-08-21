@@ -3,10 +3,13 @@ export interface Project {
   title: string;
   description: string;
   longDescription: string;
+  description_en?: string;
+  longDescription_en?: string;
   image: string;
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  branch?: string;
   featured: boolean;
   screenshots?: string[];
 }
@@ -17,6 +20,8 @@ export const projects: Project[] = [
     title: "SiPena",
     description: "Sistem Perizinan Akademik (SiPena) untuk digitalisasi pengajuan & pengelolaan surat izin siswa, guru, dan staff. Multi-role auth, workflow approval, notifikasi real-time, OTP verifikasi, dan audit log.",
     longDescription: "SiPena (Sistem Perizinan Akademik) adalah platform digital untuk mengelola seluruh siklus hayat surat izin di lingkungan sekolah — dari pengajuan oleh siswa/guru/staff, review multi-tingkat (wali kelas, BK, tu, kepsek), hingga penerbitan surat digital dengan QR code verifikasi. Fitur utama: login berbasis OTP & RBAC, dashboard peran (siswa, guru, admin), pengajuan izin sakit/acara/keluar sekolah, workflow approval bertahap, notifikasi real-time (WebSocket), riwayat & log aktivitas lengkap, cetak surat dengan barcode Code 128, serta panel admin untuk master data (kelas, guru, template surat, pengguna). Frontend Next.js + TypeScript + Tailwind; backend Go/Gin + MariaDB + Redis untuk caching & session.",
+    description_en: "Academic Permission System (SiPena) to digitize the submission & management of leave permits for students, teachers, and staff. Multi-role auth, approval workflows, real-time notifications, OTP verification, and audit logs.",
+    longDescription_en: "SiPena (Academic Permission System) is a digital platform designed to manage the entire lifecycle of student, teacher, and staff permission letters — from submission, multi-tier approvals (homeroom teachers, counseling, administration, principal), to digital letter issuance with verification QR codes. Key features include OTP & RBAC authentication, role-based dashboards, leave requests, stepped approval workflows, real-time WebSocket notifications, full audit logs, and Code 128 barcode printing. Built with Next.js, TypeScript, Tailwind CSS on the frontend, and Go/Gin, MariaDB, Redis on the backend.",
     image: "/projects/sipena/sipena.webp",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Go", "Gin", "MariaDB", "Redis"],
     githubUrl: "https://github.com/e-letter/e-letter-web",
@@ -41,6 +46,8 @@ export const projects: Project[] = [
     title: "RuangTeduh",
     description: "Aplikasi pencarian coffee shop bergaya neo-brutalism untuk menemukan tempat yang tenang, estetik, dan produktif berdasarkan mood, atmosfer, dan vibes.",
     longDescription: "RuangTeduh adalah aplikasi pencarian coffee shop bergaya neo-brutalism yang mengutamakan pengalaman emosional, bukan hanya rating dan menu. Pengguna dapat mencari café berdasarkan nama, memfilter berdasarkan mood dan vibes, melihat rekomendasi serta detail dinamis setiap tempat, dan menyimpan coffee shop favorit untuk menemukan ruang yang cocok untuk fokus, healing, night coding, atau bekerja sendiri.",
+    description_en: "A neo-brutalism coffee shop discovery app to find calm, aesthetic, and productive workspaces based on mood, atmosphere, and vibes.",
+    longDescription_en: "RuangTeduh is a neo-brutalism styled coffee shop discovery application focusing on emotional experiences beyond mere ratings and menus. Users can search cafés by name, filter by mood and ambiance, explore dynamic venue details and recommendations, and save favorites to find the perfect spot for focus, healing, night coding, or solo work.",
     image: "/projects/ruang-teduh/1dashboard.webp",
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "shadcn/ui", "Supabase"],
     githubUrl: "https://github.com/Mufid2225/ruangteduh",
@@ -59,6 +66,8 @@ export const projects: Project[] = [
     title: "9Router",
     description: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint untuk routing ke 40+ AI provider dengan smart fallback dan kompresi token, dihosting via Hugging Face",
     longDescription: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint untuk routing ke 40+ AI provider dengan smart fallback dan kompresi token, dihosting via Hugging Face",
+    description_en: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint routing to 40+ AI providers with smart fallbacks and token compression, hosted on Hugging Face.",
+    longDescription_en: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint for routing across 40+ AI providers with smart fallbacks and token compression, hosted on Hugging Face Spaces with SQLite database storage.",
     image: "/projects/9router/1login-router.webp",
     techStack: ["Next.js", "React", "Tailwind CSS", "SQLite", "Express"],
     screenshots: [
@@ -76,6 +85,8 @@ export const projects: Project[] = [
     title: "Kasir-App",
     description: "Aplikasi Point of Sale desktop untuk toko dan UMKM Indonesia dengan checkout, inventori, shift, laporan, serta pembayaran Tunai, Debit, dan QRIS.",
     longDescription: "Aplikasi Point of Sale desktop untuk toko dan UMKM Indonesia. Kasir-App menyediakan login SQLite dan RBAC, checkout atomik, pembayaran Tunai, Debit, dan Xendit QRIS sandbox, pengelolaan shift, inventori, riwayat transaksi, laporan, ekspor CSV/PDF, void/refund lokal, pengaturan toko, serta struk dinamis dengan barcode Code 128.",
+    description_en: "Desktop Point of Sale application for Indonesian retail and MSMEs featuring checkout, inventory, shift tracking, reporting, and Cash, Debit, and QRIS payments.",
+    longDescription_en: "Desktop Point of Sale application for Indonesian retail shops and MSMEs. Kasir-App offers SQLite authentication and RBAC, atomic checkout, Cash, Debit, and Xendit QRIS payments, shift management, inventory tracking, transaction history, analytical reports, CSV/PDF exports, local refunds, and dynamic receipt printing with Code 128 barcodes.",
     image: "/projects/kasir-app/1login-page.webp",
     techStack: ["Electron", "Next.js", "React", "TypeScript", "Tailwind CSS", "SQLite"],
     screenshots: [
@@ -100,6 +111,8 @@ export const projects: Project[] = [
     title: "Aligatour",
     description: "Website katalog tour and travel untuk menjelajahi paket wisata Malang, Batu, dan destinasi Jawa Timur serta melakukan reservasi melalui WhatsApp.",
     longDescription: "Aligatour adalah website katalog tour and travel yang menampilkan layanan wisata Malang, Batu, dan berbagai destinasi Jawa Timur. Pengunjung dapat melihat pilihan paket, harga, destinasi, fasilitas, syarat perjalanan, dan halaman detail untuk enam layanan, lalu menghubungi Aligatour melalui WhatsApp untuk reservasi. Website responsif ini juga dilengkapi informasi kontak, media sosial, dan metadata pada setiap halaman trip.",
+    description_en: "Tour & travel catalog website to explore vacation packages in Malang, Batu, and East Java destinations with seamless WhatsApp reservations.",
+    longDescription_en: "Aligatour is a tour and travel catalog website showcasing tour packages in Malang, Batu, and various East Java destinations. Visitors can explore package options, pricing, destinations, facilities, travel terms, and detailed itinerary pages, then easily contact Aligatour via WhatsApp for direct bookings. Built with Next.js, React, TypeScript, and Tailwind CSS.",
     image: "/projects/aligatour/1dashboard.webp",
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Phosphor Icons", "Netlify"],
     screenshots: [
@@ -123,6 +136,8 @@ export const projects: Project[] = [
     title: "Profil GitHub",
     description: "README profil GitHub dengan hero SVG responsif bertema terminal yang menyesuaikan desktop, mobile, light mode, dan dark mode.",
     longDescription: "Profil GitHub personal dengan highlight hero SVG yang digenerasi melalui Node.js dan Sharp. Generator mengubah portrait menjadi ASCII art, lalu menyusun terminal-style identity dengan animasi typewriter, moving caret, scan beam, status indicator, serta metadata SVG yang aksesibel. Empat varian SVG untuk desktop/mobile dan light/dark theme dipilih otomatis melalui elemen picture. README juga merangkum fokus pengembangan, featured projects, categorized tech stack, dan kontak dalam tampilan yang konsisten.",
+    description_en: "Personal GitHub profile README featuring a responsive terminal-themed SVG hero adapting to desktop, mobile, light mode, and dark mode.",
+    longDescription_en: "Personal GitHub profile with a standout responsive SVG hero generated using Node.js and Sharp. The generator transforms portrait imagery into ASCII art, structuring a terminal-style identity with typewriter animations, scanning beams, status indicators, and accessible SVG metadata with automatic light/dark and mobile/desktop switching.",
     image: "/projects/profil-github/1hero.webp",
     techStack: ["SVG", "JavaScript", "Node.js", "Sharp", "GitHub Markdown"],
     screenshots: [
@@ -140,6 +155,8 @@ export const projects: Project[] = [
     title: "Nerrisa Bot",
     description: "Asisten AI Telegram privat untuk analisis pasar dan ekonomi, pencarian web, pengelolaan tugas sekolah, pemrosesan file, serta memory berbasis SQLite.",
     longDescription: "Nerrisa Bot adalah asisten AI Telegram privat yang menggunakan 9router sebagai AI engine. Bot menggabungkan data Yahoo Finance, Alpha Vantage, dan Financial Modeling Prep untuk analisis saham, market, serta ekonomi global; memakai Tavily, NewsAPI, dan SerpAPI untuk pencarian web berjenjang; mengelola tugas sekolah dan reminder; memproses gambar melalui OCR serta mengekstrak PDF dan DOCX; dan menyimpan percakapan, memory, serta knowledge graph dalam SQLite. Akses perintah dibatasi ke Telegram user ID yang dikonfigurasi.",
+    description_en: "Private Telegram AI assistant for financial & economic analysis, web search, school task management, file processing, and SQLite-backed memory.",
+    longDescription_en: "Nerrisa Bot is a private Telegram AI assistant powered by 9router. The bot integrates Yahoo Finance, Alpha Vantage, and Financial Modeling Prep for market analysis; uses Tavily, NewsAPI, and SerpAPI for web search; manages homework reminders; processes OCR images and documents; and maintains conversations, memory, and knowledge graphs in SQLite.",
     image: "/projects/telegram-bot/1profil.webp",
     techStack: ["JavaScript", "Node.js", "Telegraf", "SQLite", "9router", "Tesseract.js"],
     screenshots: [
@@ -155,6 +172,8 @@ export const projects: Project[] = [
     title: "ZeroCost.ai",
     description: "Direktori katalog penyedia AI, API, dan developer tools dengan free tier. Terdiri dari 15 penyedia AI yang sudah diverifikasi, teruji, dan dikatalogkan secara manual.",
     longDescription: "ZeroCost.ai adalah direktori katalog penyedia AI, API, dan developer tools dengan free tier. Dibangun sebagai katalog yang terverifikasi — hanya admin yang menguji dan menambahkan penyedia setelah verifikasi. Pengguna dapat menjelajahi, mencari, memfilter, dan mengakses kode untuk integrasi instan.",
+    description_en: "Directory catalog of AI providers, APIs, and developer tools with free tiers. Includes 15 verified, tested, and manually curated AI services.",
+    longDescription_en: "ZeroCost.ai is a curated directory of AI service providers, APIs, and developer tools offering free tiers. Built as a verified catalog where each provider is manually tested before listing. Users can browse, search, filter, and access instant integration code.",
     image: "/projects/zerocost/zerocost1.webp",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
     githubUrl: "https://github.com/Mufid2225/zerocost",
@@ -176,27 +195,55 @@ export const projects: Project[] = [
     title: "STARTOVER",
     description: "Platform editorial financial intelligence untuk memahami pasar global & Indonesia melalui market data, analisis teknikal, berita keuangan, kalender ekonomi, sentiment/score/regime/risk deterministik, watchlist, dan pencarian global.",
     longDescription: "STARTOVER adalah platform riset pasar yang dirancang sebagai produk editorial tenang, bukan dashboard trading generik. Menyediakan: overview pasar editorial, daftar & detail pasar, feed berita, kalender ekonomi, daily brief, UI ask analyst, watchlist lokal anonim, pencarian global, filter fungsional, tema terang/gelap, navigasi responsif, interaksi Motion, dukungan loading/error/empty/reduced-motion, indikator teknikal (SMA, EMA, RSI, momentum, volatility), sentiment/score/regime/risk/evidence deterministik, registry provider dengan validasi/normalisasi/deduplikasi/freshness/health, metadata provenance. Semua data eksternal saat ini SIMULASI (mock provider). Arsitektur siap untuk integrasi provider real dan persistensi PostgreSQL.",
+    description_en: "Editorial financial intelligence platform to understand global & Indonesian markets through market data, technical analysis, financial news, economic calendars, deterministic sentiment/regime/risk scores, watchlists, and global search.",
+    longDescription_en: "STARTOVER is a market research platform designed as a calm editorial product rather than a noisy trading dashboard. Provides editorial market overviews, market directories, news feeds, economic calendars, daily briefs, ask analyst UI, anonymous local watchlists, global search, technical indicators (SMA, EMA, RSI), deterministic sentiment/risk scoring, provider validation and deduplication pipelines, and architecture ready for real provider integration and PostgreSQL persistence.",
     image: "/projects/startover/1hero.svg",
     techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Motion", "Zod", "Drizzle ORM", "PostgreSQL", "Redis", "Bun"],
     githubUrl: "https://github.com/Mufid2225/startover",
     featured: false,
     screenshots: [],
   },
+  {
+    id: "project-10",
+    title: "OLIVIA",
+    description: "Asisten suara AI lokal (Local-First AI Voice Assistant) yang beroperasi sepenuhnya offline tanpa API cloud. Dilengkapi deteksi wake word kustom 'OLIVIA', sintesis suara neural bahasa Indonesia (Piper TTS), STT lokal (faster-whisper), memori jangka panjang SQLite FTS5, dan sistem keamanan 3-tier.",
+    longDescription: "OLIVIA adalah asisten suara AI lokal yang mengutamakan privasi penuh pengguna dengan berjalan 100% di perangkat lokal tanpa bergantung pada layanan cloud eksternal. Sistem ini menggabungkan pipeline audio streaming (AudioWorklet & WebSocket), deteksi wake word kustom berbasis ONNX Runtime ('OLIVIA') dengan VAD pre-gating, transkripsi suara lokal menggunakan faster-whisper, penalaran LLM lokal via Ollama, sintesis suara neural bahasa Indonesia beresolusi tinggi dengan Piper TTS (id_ID-news_tts-medium), serta memori kontekstual jangka panjang berbasis SQLite FTS5 dengan importance decay dan permission sandbox 3-tier.",
+    description_en: "Local-first AI Voice Assistant operating 100% offline without cloud APIs. Equipped with custom wake-word detection ('OLIVIA'), Indonesian neural voice synthesis (Piper TTS), local STT (faster-whisper), SQLite FTS5 long-term memory, and 3-tier sandbox security.",
+    longDescription_en: "OLIVIA is a local-first AI voice assistant prioritizing complete user privacy by running 100% on local hardware without external cloud dependencies. The system integrates AudioWorklet & WebSocket streaming audio pipelines, custom ONNX Runtime wake-word detection with VAD pre-gating, local faster-whisper speech-to-text, local LLM inference via Ollama, high-resolution Indonesian neural voice synthesis with Piper TTS, and long-term contextual memory powered by SQLite FTS5 with importance decay and 3-tier permission sandboxing.",
+    image: "/projects/olivia/1hero.svg",
+    techStack: ["Next.js", "TypeScript", "Bun", "FastAPI", "Python", "ONNX Runtime", "Piper TTS", "SQLite", "Tailwind CSS", "Ollama"],
+    githubUrl: "https://github.com/Mufid2225/olivia",
+    featured: false,
+    screenshots: [],
+  },
 ];
+
+export function getProjectContent(project: Project, language: "id" | "en") {
+  return {
+    title: project.title,
+    description: language === "en" && project.description_en ? project.description_en : project.description,
+    longDescription: language === "en" && project.longDescription_en ? project.longDescription_en : project.longDescription,
+  };
+}
 
 export const skills = [
   "Next.js",
   "React",
   "TypeScript",
   "JavaScript",
+  "Python",
   "Node.js",
+  "Bun",
+  "FastAPI",
   "Tailwind CSS",
   "Git",
   "Electron",
   "MySQL",
   "SQLite",
   "PostgreSQL",
+  "Redis",
   "Docker",
+  "Ollama",
 ];
 
 export const socialLinks = {

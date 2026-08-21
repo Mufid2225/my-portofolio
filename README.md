@@ -1,132 +1,231 @@
-# Portfolio — Muhammad Mufid Arhaburrizky
+# Mufid // Portfolio
 
-Portfolio pribadi Muhammad Mufid Arhaburrizky, seorang Frontend Developer dengan minat pada pengembangan web dan Artificial Intelligence. Website ini menampilkan profil, teknologi yang digunakan, sertifikat, kanal kontak, serta project yang pernah dikerjakan atau dikontribusikan.
+```
+● MUFID // PORTFOLIO   ·   Cyber-Terminal Developer Portfolio
+```
 
-Dibangun sebagai website frontend statis menggunakan Next.js App Router, TypeScript strict, Tailwind CSS, shadcn/ui, dan Framer Motion.
+Portfolio pribadi **Muhammad Mufid Arhaburrizky** — seorang Frontend Developer yang gemar bereksperimen di bidang web dan Artificial Intelligence. Dibangun sebagai website frontend-only statis dengan pendekatan desain **Monochrome Cyberpunk / Tactical Developer Minimalism**.
+
+---
+
+## Design Concept
+
+```text
+terminal://mufid/design.md
+```
+
+**Tema**: Monochrome Cyberpunk / Tactical Developer Minimalism
+- Latar belakang jet-black `#030303`, teks putih & silver, aksen zinc
+- Tidak ada warna hijau atau emerald — paleta monokrom konsisten
+- Seluruh teks antarmuka menggunakan `font-mono` (JetBrains Mono)
+- Elemen interaktif tampil sebagai terminal window, bracket badges, dan tactical viewfinder
+
+---
 
 ## Project Showcase
 
 ### SiPena
+```
+src/projects/project-1.tsx  ·  branch: main
+```
+Sistem Perizinan Akademik untuk mendigitalisasi proses pengajuan dan pengelolaan berbagai surat perizinan. Multi-role auth, workflow approval, notifikasi real-time, OTP, dan audit log.
 
-Sistem Perizinan Akademik untuk mendigitalisasi proses pengajuan dan pengelolaan berbagai surat perizinan. Project ini menggunakan Next.js dan TypeScript pada frontend serta Go, Gin, MariaDB, dan Redis pada sisi layanan.
-
-- Live: [sipena-smkn2.dedyn.io](https://www.sipena-smkn2.dedyn.io/)
 - Source: [e-letter/e-letter-web](https://github.com/e-letter/e-letter-web)
-- Stack: Next.js, TypeScript, Tailwind CSS, Go, Gin, MariaDB, Redis
+- Stack: `[Next.js]` `[TypeScript]` `[Tailwind CSS]` `[Go]` `[Gin]` `[MariaDB]` `[Redis]`
+
+---
 
 ### RuangTeduh
-
-Aplikasi pencarian coffee shop bergaya neo-brutalism. Pengguna dapat menemukan tempat berdasarkan nama, mood, atmosfer, dan vibes; melihat rekomendasi serta detail tempat; dan menyimpan coffee shop favorit.
+```
+src/projects/project-2.tsx  ·  branch: main
+```
+Aplikasi pencarian coffee shop bergaya neo-brutalism. Temukan tempat berdasarkan nama, mood, atmosfer, dan vibes; lihat rekomendasi & detail tempat; simpan coffee shop favorit.
 
 - Source: [Mufid2225/ruangteduh](https://github.com/Mufid2225/ruangteduh)
-- Stack: Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Supabase
+- Stack: `[Next.js]` `[React]` `[TypeScript]` `[Tailwind CSS]` `[shadcn/ui]` `[Supabase]`
 
-### Kasir-App
-
-Aplikasi Point of Sale desktop untuk toko dan UMKM Indonesia. Fitur utamanya mencakup login dan RBAC, checkout atomik, pembayaran Tunai, Debit, dan Xendit QRIS sandbox, shift, inventori, riwayat transaksi, laporan, ekspor CSV/PDF, void/refund, serta struk dengan barcode Code 128.
-
-- Source: [Mufid2225/kasir-app](https://github.com/Mufid2225/kasir-app)
-- Stack: Electron, Next.js, React, TypeScript, Tailwind CSS, SQLite
+---
 
 ### 9Router
-
-AI router dengan endpoint kompatibel OpenAI untuk mengarahkan request ke berbagai provider, dilengkapi smart fallback dan kompresi token.
+```
+src/projects/project-3.tsx  ·  branch: main
+```
+FREE AI Router & Token Saver — single OpenAI-compatible endpoint untuk routing ke 40+ AI provider dengan smart fallback dan kompresi token, dihosting via Hugging Face.
 
 - Live: [9Router Database Demo](https://neriss4-9router-database-demo.hf.space/)
 - Source: [Hugging Face Space](https://huggingface.co/spaces/Neriss4/9router-database-demo/tree/main)
-- Stack: Next.js, React, Tailwind CSS, SQLite, Express
+- Stack: `[Next.js]` `[React]` `[Tailwind CSS]` `[SQLite]` `[Express]`
+
+---
+
+### Kasir-App
+```
+src/projects/project-4.tsx  ·  branch: main
+```
+Aplikasi Point of Sale desktop untuk toko dan UMKM Indonesia. Login & RBAC, checkout atomik, pembayaran Tunai/Debit/QRIS, shift, inventori, laporan, ekspor CSV/PDF, dan struk barcode.
+
+- Source: [Mufid2225/kasir-app](https://github.com/Mufid2225/kasir-app)
+- Stack: `[Electron]` `[Next.js]` `[React]` `[TypeScript]` `[Tailwind CSS]` `[SQLite]`
+
+---
 
 ### Aligatour
-
-Website katalog tour and travel untuk menampilkan paket wisata Malang, Batu, dan berbagai destinasi Jawa Timur. Pengunjung dapat melihat harga, destinasi, fasilitas, syarat perjalanan, dan detail layanan sebelum melakukan reservasi melalui WhatsApp.
+```
+src/projects/project-5.tsx  ·  branch: main
+```
+Website katalog tour and travel untuk menjelajahi paket wisata Malang, Batu, dan destinasi Jawa Timur serta melakukan reservasi melalui WhatsApp.
 
 - Live: [aligatour.netlify.app](https://aligatour.netlify.app/)
 - Source: [Mufid2225/aligatour](https://github.com/Mufid2225/aligatour)
-- Stack: Next.js, React, TypeScript, Tailwind CSS, Phosphor Icons, Netlify
+- Stack: `[Next.js]` `[React]` `[TypeScript]` `[Tailwind CSS]` `[Phosphor Icons]` `[Netlify]`
+
+---
 
 ### Profil GitHub
-
-README profil GitHub dengan hero SVG responsif bertema terminal. Generator Node.js dan Sharp mengubah portrait menjadi ASCII art serta menghasilkan empat varian SVG untuk desktop/mobile dan light/dark theme, lengkap dengan animasi typewriter, moving caret, scan beam, dan metadata aksesibel.
+```
+src/projects/project-6.tsx  ·  branch: main
+```
+README profil GitHub dengan hero SVG responsif bertema terminal, mendukung desktop/mobile dan light/dark mode secara otomatis lewat `<picture>`.
 
 - Live: [github.com/Mufid2225](https://github.com/Mufid2225)
 - Source: [Mufid2225/Mufid2225](https://github.com/Mufid2225/Mufid2225)
-- Stack: SVG, JavaScript, Node.js, Sharp, GitHub Markdown
+- Stack: `[SVG]` `[JavaScript]` `[Node.js]` `[Sharp]` `[GitHub Markdown]`
+
+---
 
 ### Nerrisa Bot
-
-Asisten AI Telegram privat untuk analisis saham, market, dan ekonomi global; pencarian web; manajemen tugas sekolah; OCR serta ekstraksi PDF/DOCX; dan memory berbasis SQLite. Bot menggunakan 9router sebagai AI engine dan membatasi penggunaan berdasarkan Telegram user ID.
+```
+src/projects/project-7.tsx  ·  branch: main
+```
+Asisten AI Telegram privat untuk analisis pasar & ekonomi, pencarian web, manajemen tugas sekolah, pemrosesan file, dan memory berbasis SQLite. Engine: 9router.
 
 - Bot: [@nerrisa_Bot](https://t.me/nerrisa_Bot)
 - Source: [Mufid2225/ai-telegram-bot](https://github.com/Mufid2225/ai-telegram-bot)
-- Stack: JavaScript, Node.js, Telegraf, SQLite, 9router, Tesseract.js
+- Stack: `[JavaScript]` `[Node.js]` `[Telegraf]` `[SQLite]` `[9router]` `[Tesseract.js]`
+
+---
 
 ### ZeroCost.ai
-
-Direktori katalog penyedia AI, API, dan developer tools dengan free tier. Terdiri dari 15 penyedia AI yang terverifikasi dan teruji, dengan pencarian real-time, filter kategori, halaman detail, bookmark, dark/light mode, serta admin dashboard untuk mengelola penyedia.
+```
+src/projects/project-8.tsx  ·  branch: main
+```
+Direktori katalog penyedia AI, API, dan developer tools dengan free tier. 15 penyedia terverifikasi secara manual, dengan pencarian, filter kategori, dan kode integrasi instan.
 
 - Source: [Mufid2225/zerocost](https://github.com/Mufid2225/zerocost)
-- Stack: Next.js, TypeScript, Tailwind CSS
+- Stack: `[Next.js]` `[TypeScript]` `[Tailwind CSS]`
+
+---
 
 ### STARTOVER
-
-Platform editorial financial intelligence untuk memahami pasar global dan Indonesia. Menyediakan market data, analisis teknikal, berita keuangan, kalender ekonomi, sentiment/score/regime/risk deterministik, watchlist, pencarian global, serta UI riset yang tenang (bukan trading dashboard). Data saat ini simulasi (mock provider), arsitektur siap untuk provider real dan persistensi PostgreSQL.
+```
+src/projects/project-9.tsx  ·  branch: main
+```
+Platform editorial financial intelligence untuk memahami pasar global & Indonesia. Market data, analisis teknikal, berita keuangan, kalender ekonomi, sentiment/risk deterministik, dan watchlist.
 
 - Source: [Mufid2225/startover](https://github.com/Mufid2225/startover)
-- Stack: Next.js, React, TypeScript, Tailwind CSS, Motion, Zod, Drizzle ORM, PostgreSQL, Redis, Bun
+- Stack: `[Next.js]` `[React]` `[TypeScript]` `[Tailwind CSS]` `[Motion]` `[Zod]` `[Drizzle ORM]` `[PostgreSQL]` `[Redis]` `[Bun]`
 
-## Fitur Portfolio
+---
 
-- Homepage responsif dengan dark theme dan aksen emerald
-- Hero interaktif dengan pergantian nama dan navigasi cepat
-- Featured Projects serta halaman daftar project
-- Halaman detail project dengan galeri screenshot
-- Carousel Tech Stack dengan urutan acak tanpa duplikasi aktif
-- Halaman About berisi profil, pendidikan, skill, dan sertifikat
-- Navigasi breadcrumb, halaman 404, error boundary, dan debug page
-- Animasi antarmuka menggunakan Framer Motion
-- Aset gambar WebP yang dikelompokkan berdasarkan kategori dan project
+### OLIVIA
+```
+src/projects/project-10.tsx  ·  branch: main
+```
+Local-First AI Voice Assistant yang beroperasi 100% offline. Custom wake word "OLIVIA", neural TTS bahasa Indonesia (Piper), STT lokal (faster-whisper), dan memory jangka panjang SQLite FTS5.
+
+- Source: [Mufid2225/olivia](https://github.com/Mufid2225/olivia)
+- Stack: `[Next.js]` `[TypeScript]` `[Bun]` `[FastAPI]` `[Python]` `[ONNX Runtime]` `[Piper TTS]` `[SQLite]` `[Ollama]`
+
+---
+
+## Fitur Website
+
+```text
+// 01 // Hero Interaktif — Dither Wave + Crosshair + Shuffle Greeting + PowerShell CLI Bio
+// 02 // Featured Projects — Cyber-Terminal Card Window + Code Stream Watermark
+// 03 // Tech Stack — Dual Infinite Marquee Ribbon (Independent Hover Pause)
+// 04 // Contact — Terminal CLI Gateway (netstat) + Click-to-Copy
+// 05 // Footer — Developer System Status + WIB Clock + Quick Nav
+// 06 // Navbar — Monospace Brand + [ID | EN] Language Toggle
+// 07 // Projects Page — Grid 10 Proyek + Terminal Breadcrumb
+// 08 // Project Detail — Galeri Terminal + Thumbnail Filmstrip + Keyboard Nav
+// 09 // About — 5-Bento Cyber-Window Grid (Passport, Narrative, Academic, Certs, Arsenal)
+// 10 // Crosshair Cursor — Global Hover Glitch & Glow via Event Delegation
+```
+
+---
 
 ## Tech Stack
 
-| Bagian | Teknologi |
+| Layer | Teknologi |
 |---|---|
-| Framework | Next.js 16 App Router |
+| Framework | Next.js 16.2.10 (App Router, Turbopack) |
 | Runtime UI | React 19 |
-| Bahasa | TypeScript strict |
-| Styling | Tailwind CSS 4 |
-| UI | shadcn/ui 4, Radix UI, Base UI |
+| Bahasa | TypeScript (strict, no `any`) |
+| Styling | Tailwind CSS v4 |
+| UI Components | shadcn/ui v4 (base-nova, Radix, @base-ui/react/button) |
 | Animasi | Framer Motion 12 |
-| Ikon | Lucide React |
-| Package manager | Bun |
+| Ikon | Lucide React 1.23 |
+| Package Manager | Bun 1.3.13 |
 
-Teknologi yang ditampilkan dalam portfolio mencakup Next.js, React, TypeScript, JavaScript, Node.js, Tailwind CSS, Git, Electron, MySQL, SQLite, PostgreSQL, dan Docker.
+---
 
 ## Struktur Project
 
 ```text
 public/
-├── certificates/            Gambar sertifikat
+├── certificates/            Gambar sertifikat (untuk lightbox preview)
 ├── icons/                   Aset ikon statis
-├── profile/                 Foto profil
-└── projects/                Screenshot yang dikelompokkan per project
+├── profile/                 Foto profil avatar.webp
+└── projects/                Screenshot proyek, dikelompokkan per proyek
 
 src/
-├── app/                     Route dan layout Next.js App Router
-│   ├── about/               Halaman profil
-│   ├── projects/            Daftar dan detail project
-│   └── debug/               Halaman debug lokal
+├── app/
+│   ├── layout.tsx           Root layout (dark mode class, metadata, crosshair)
+│   ├── page.tsx             Homepage root
+│   ├── globals.css          Tailwind directives, keyframes marquee, terminal cursor
+│   ├── error.tsx            Error boundary
+│   ├── not-found.tsx        Custom 404
+│   ├── about/               Halaman About (/about)
+│   ├── debug/               Halaman debug lokal (/debug)
+│   └── projects/
+│       ├── page.tsx         Daftar semua proyek (/projects)
+│       └── [id]/page.tsx    Detail proyek (/projects/[id])
+│
 ├── components/
-│   ├── features/            Section homepage
-│   ├── layout/              Navbar dan Footer
-│   ├── magicui/             Efek visual
+│   ├── ClientWrapper.tsx    Wrapper client-side (crosshair, dsb.)
+│   ├── features/            Section-section homepage
+│   │   ├── HeroSection.tsx
+│   │   ├── FeaturedProjects.tsx
+│   │   ├── SkillsSection.tsx
+│   │   └── ContactSection.tsx
+│   ├── layout/              Komponen layout global
+│   │   ├── Navbar.tsx
+│   │   └── Footer.tsx
+│   ├── magicui/             Efek visual (animasi, latar)
 │   └── ui/                  Komponen UI reusable
-└── lib/
-    ├── data.ts              Data project, skill, dan social link
-    ├── debug.ts             Utility debug
-    └── utils.ts             Utility umum
+│       ├── crosshair.tsx    Crosshair cursor global
+│       ├── Dither.tsx       Bayer 8×8 Dither Wave canvas
+│       ├── shape-hero.tsx   Hero container wrapper
+│       ├── Shuffle.tsx      Shuffle text animation
+│       ├── interactive-hover-button.tsx
+│       └── language-toggle.tsx
+│
+├── context/
+│   └── LanguageContext.tsx  Provider i18n [ID | EN]
+│
+├── lib/
+│   ├── data.ts              Data proyek (10), skill, dan social link
+│   └── utils.ts             Utility umum (cn, dsb.)
+│
+└── locales/
+    ├── id.json              Teks antarmuka bahasa Indonesia
+    └── en.json              Teks antarmuka bahasa Inggris
 ```
 
-Project ini frontend-only. Tidak memakai backend, database, autentikasi, atau API route untuk website portfolio.
+Project ini **frontend-only** — tidak ada backend, database, autentikasi, atau API route.
+
+---
 
 ## Menjalankan Project
 
@@ -145,26 +244,32 @@ bun run dev
 
 Buka [http://localhost:3000](http://localhost:3000).
 
-## Scripts
+### Scripts
 
 | Command | Fungsi |
 |---|---|
-| `bun run dev` | Menjalankan development server |
-| `bun run build` | Membuat production build dan memeriksa TypeScript |
-| `bun run start` | Menjalankan production server |
-| `bun run lint` | Menjalankan ESLint |
+| `bun run dev` | Development server (Turbopack) |
+| `bun run build` | Production build + TypeScript check |
+| `bun run start` | Production server |
+| `bun run lint` | ESLint |
 
-## Build dan Deployment
+---
 
-Validasi production build:
+## Deploy
 
 ```bash
 bun run build
 ```
 
-Website dapat di-deploy ke platform yang mendukung Next.js, seperti Vercel.
+Website dapat di-deploy ke platform yang mendukung Next.js (Vercel, Netlify, dsb.).
+
+---
 
 ## Kontak
+
+```text
+terminal://mufid/contact.md
+```
 
 - Email: [mufidarhaburizky08@gmail.com](mailto:mufidarhaburizky08@gmail.com)
 - GitHub: [@Mufid2225](https://github.com/Mufid2225)
