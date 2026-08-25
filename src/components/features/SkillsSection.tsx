@@ -35,7 +35,7 @@ const row2: TechItem[] = [
 
 function TechChip({ tech }: { tech: TechItem }) {
   return (
-    <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-950/85 px-4 py-2.5 shadow-[0_4px_20px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-300 hover:border-white/40 hover:bg-zinc-900/90 hover:scale-105 hover:shadow-[0_8px_25px_rgba(255,255,255,0.08)] select-none">
+    <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/90 px-4 py-2.5 shadow-[0_4px_16px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-white/40 hover:bg-zinc-800/90 hover:scale-105 hover:shadow-[0_8px_25px_rgba(255,255,255,0.08)] select-none">
       <div className="relative h-6 w-6 shrink-0 md:h-7 md:w-7">
         <Image
           src={tech.src}
@@ -56,10 +56,7 @@ export default function SkillsSection() {
   const { t } = useLanguage();
 
   return (
-    <section
-      className="relative border-t border-border/40 px-4 py-24 overflow-hidden"
-      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 400px" }}
-    >
+    <section className="relative border-t border-border/40 px-4 py-24 overflow-hidden">
       {/* Background Subtle Ambient Glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-72 w-[600px] rounded-full bg-white/[0.02] blur-[120px]" />
 

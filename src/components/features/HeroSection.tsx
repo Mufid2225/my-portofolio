@@ -106,7 +106,7 @@ export default function HeroSection() {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="mx-auto mt-6 w-full max-w-xl px-4"
       >
-        <div className="group relative overflow-hidden rounded-xl border border-white/20 bg-black/85 text-left shadow-[0_8px_32px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 hover:border-white/35 hover:shadow-[0_8px_40px_rgba(255,255,255,0.06)]">
+        <div className="group relative overflow-hidden rounded-xl border border-white/20 bg-black/95 text-left shadow-[0_8px_32px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-white/35 hover:shadow-[0_8px_40px_rgba(255,255,255,0.06)]">
           {/* Terminal Title Bar */}
           <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.04] px-3.5 py-1.5 select-none">
             <div className="flex items-center gap-1.5">

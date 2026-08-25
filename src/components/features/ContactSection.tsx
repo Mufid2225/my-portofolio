@@ -93,10 +93,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section
-      className="relative border-t border-border/40 px-4 py-24 overflow-hidden"
-      style={{ contentVisibility: "auto", containIntrinsicSize: "auto 450px" }}
-    >
+    <section className="relative border-t border-border/40 px-3 sm:px-6 py-20 sm:py-24 overflow-hidden">
       {/* Background Subtle Ambient Glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-72 w-[600px] rounded-full bg-white/[0.02] blur-[120px]" />
 
@@ -107,17 +104,17 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
+          className="mb-10 sm:mb-12 text-center"
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-xs text-zinc-400 mb-3 select-none">
             <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
             <span>03 // NETWORK_PORTS</span>
           </div>
-          <h2 className="font-mono text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="font-mono text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground">
             {t.contact.title}{" "}
             <span className="text-white">{t.contact.highlight}</span>
           </h2>
-          <p className="mt-2 text-zinc-400 font-mono text-sm sm:text-base">
+          <p className="mt-2 text-zinc-400 font-mono text-xs sm:text-sm md:text-base max-w-lg mx-auto">
             {t.contact.subtitle}
           </p>
         </motion.div>
@@ -128,31 +125,32 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 shadow-[0_12px_45px_rgba(0,0,0,0.75)] backdrop-blur-md"
+          className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 shadow-[0_12px_45px_rgba(0,0,0,0.75)]"
         >
           {/* Console Header Bar */}
-          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3 select-none">
-            <div className="flex items-center gap-2">
-              <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-              <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-              <span className="h-2.5 w-2.5 rounded-full bg-zinc-700" />
-              <div className="ml-2 flex items-center gap-1.5 font-mono text-xs text-zinc-400">
-                <Terminal className="h-3.5 w-3.5" />
-                <span>terminal.exe — connect-gateway</span>
+          <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-3 sm:px-4 py-2.5 sm:py-3 select-none gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full bg-zinc-700" />
+              <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full bg-zinc-700" />
+              <span className="h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0 rounded-full bg-zinc-700" />
+              <div className="ml-1 sm:ml-2 flex items-center gap-1.5 font-mono text-[11px] sm:text-xs text-zinc-400 truncate">
+                <Terminal className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0" />
+                <span className="truncate">terminal.exe — connect-gateway</span>
               </div>
             </div>
-            <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500">
+            <div className="flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] text-zinc-400 shrink-0">
               <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-              <span>STATUS: LISTENING</span>
+              <span className="hidden xs:inline">STATUS: </span>
+              <span className="text-zinc-300 font-semibold">LISTENING</span>
             </div>
           </div>
 
           {/* Console Body */}
-          <div className="p-5 sm:p-7 space-y-5">
+          <div className="p-4 sm:p-7 space-y-4 sm:space-y-5">
             {/* Command Prompt */}
-            <div className="font-mono text-xs text-zinc-400 flex items-center gap-2 select-none border-b border-white/5 pb-3">
-              <span className="text-white">PS C:\mufid\network&gt;</span>
-              <span className="text-zinc-200">netstat -an --listen-channels</span>
+            <div className="font-mono text-[11px] sm:text-xs text-zinc-400 flex flex-wrap items-center gap-1.5 sm:gap-2 select-none border-b border-white/5 pb-3">
+              <span className="text-white font-semibold">PS C:\mufid\network&gt;</span>
+              <span className="text-zinc-300">netstat -an --listen-channels</span>
             </div>
 
             {/* Port Channels List */}
@@ -163,43 +161,44 @@ export default function ContactSection() {
                 return (
                   <div
                     key={p.port}
-                    className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-white/10 bg-zinc-900/60 p-4 transition-all duration-300 hover:border-white/35 hover:bg-zinc-900/90"
+                    className="group flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 rounded-xl border border-white/10 bg-zinc-900/60 p-3 sm:p-4 transition-all duration-300 hover:border-white/35 hover:bg-zinc-900/90"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 text-zinc-300 transition-colors group-hover:border-white/30 group-hover:text-white">
+                    {/* Left: Icon + Port Details */}
+                    <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-zinc-950 text-zinc-300 transition-colors group-hover:border-white/30 group-hover:text-white mt-0.5 sm:mt-0">
                         <Icon className="h-4 w-4" />
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] text-zinc-500 border border-white/10 rounded px-1.5 py-0.5">
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                          <span className="text-[10px] sm:text-[11px] text-zinc-400 border border-white/10 rounded px-1.5 py-0.5 bg-white/[0.02]">
                             {p.port}
                           </span>
-                          <span className="text-xs font-semibold text-zinc-200 group-hover:text-white">
+                          <span className="text-xs font-semibold text-zinc-200 group-hover:text-white truncate">
                             {p.name}
                           </span>
-                          <span className="text-[10px] text-zinc-500">
+                          <span className="text-[9px] sm:text-[10px] text-zinc-500">
                             [{p.proto}]
                           </span>
                         </div>
-                        <p className="text-xs text-zinc-400 mt-0.5">
+                        <p className="text-[11px] sm:text-xs text-zinc-400 mt-1 break-all sm:break-normal truncate">
                           {p.target}
                         </p>
                       </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex items-center gap-2 self-end sm:self-center">
+                    {/* Actions: Full width on mobile bottom, aligned on desktop */}
+                    <div className="flex items-center gap-2 pt-2 border-t border-white/5 sm:border-0 sm:pt-0 sm:shrink-0 justify-end">
                       {p.isEmail ? (
                         <>
                           <button
                             type="button"
                             onClick={handleCopyEmail}
-                            className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black cursor-pointer"
+                            className="flex items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black cursor-pointer active:scale-95"
                           >
                             {copied ? (
                               <>
                                 <Check className="h-3.5 w-3.5 text-black" />
-                                <span>COPIED!</span>
+                                <span className="font-semibold">COPIED!</span>
                               </>
                             ) : (
                               <>
@@ -210,7 +209,7 @@ export default function ContactSection() {
                           </button>
                           <Link
                             href={p.href}
-                            className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black"
+                            className="flex items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black active:scale-95"
                           >
                             <ExternalLink className="h-3.5 w-3.5" />
                             <span>OPEN</span>
@@ -221,7 +220,7 @@ export default function ContactSection() {
                           href={p.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black"
+                          className="flex items-center justify-center gap-1.5 rounded-lg border border-white/15 bg-white/[0.04] px-3.5 py-1.5 text-xs text-zinc-300 transition-all hover:border-white/40 hover:bg-white hover:text-black active:scale-95"
                         >
                           <ExternalLink className="h-3.5 w-3.5" />
                           <span>CONNECT</span>
@@ -234,7 +233,7 @@ export default function ContactSection() {
             </div>
 
             {/* Bottom Active Prompt */}
-            <div className="pt-2 font-mono text-xs text-zinc-500 flex items-center gap-1.5 select-none">
+            <div className="pt-2 font-mono text-[11px] sm:text-xs text-zinc-500 flex items-center gap-1.5 select-none">
               <span>PS C:\mufid\network&gt;</span>
               <span className="terminal-cursor inline-block h-3.5 w-2 bg-white" />
             </div>

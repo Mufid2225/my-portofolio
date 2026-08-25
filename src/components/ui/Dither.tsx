@@ -175,6 +175,9 @@ function DitherComponent({
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
 
+    gl.disable(gl.DEPTH_TEST);
+    gl.disable(gl.BLEND);
+
     const aPos  = gl.getAttribLocation(program,  "a_pos");
     const uRes  = gl.getUniformLocation(program, "u_res");
     const uTime = gl.getUniformLocation(program, "u_time");
@@ -230,11 +233,12 @@ function DitherComponent({
     resize();
     drawFrame(0);
 
-    const ro = new ResizeObserver(resize);
-    ro.observe(container);
-
+    let isVisible = true;
+    let isRunning = false;
     let raf = 0;
+
     const render = () => {
+      if (!isRunning) return;
       const p = pr.current;
       if (!p.disableAnimation) time += p.waveSpeed * 0.25;
 
@@ -242,11 +246,40 @@ function DitherComponent({
       raf = requestAnimationFrame(render);
     };
 
-    raf = requestAnimationFrame(render);
+    const startLoop = () => {
+      if (isRunning) return;
+      isRunning = true;
+      raf = requestAnimationFrame(render);
+    };
+
+    const stopLoop = () => {
+      isRunning = false;
+      cancelAnimationFrame(raf);
+    };
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(container);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry?.isIntersecting ?? true;
+        if (isVisible) {
+          drawFrame(time);
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.02 }
+    );
+    io.observe(container);
+
+    startLoop();
 
     return () => {
-      cancelAnimationFrame(raf);
+      stopLoop();
       ro.disconnect();
+      io.disconnect();
       gl.deleteProgram(program);
       gl.deleteBuffer(quadBuf);
       gl.deleteTexture(bayerTex);

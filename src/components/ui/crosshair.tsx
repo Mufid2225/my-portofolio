@@ -30,8 +30,6 @@ export default function Crosshair({
   const cursorRef = useRef<HTMLDivElement>(null);
   const lineHorizontalRef = useRef<HTMLDivElement>(null);
   const lineVerticalRef = useRef<HTMLDivElement>(null);
-  const filterXRef = useRef<SVGFETurbulenceElement>(null);
-  const filterYRef = useRef<SVGFETurbulenceElement>(null);
 
   useEffect(() => {
     let mouse = { x: -1000, y: -1000 };
@@ -100,7 +98,7 @@ export default function Crosshair({
       renderedStyles.ty.previous = renderedStyles.ty.current = mouse.y;
 
       gsap.to([lineHorizontalRef.current, lineVerticalRef.current], {
-        duration: 0.3,
+        duration: 0.25,
         ease: "power2.out",
         opacity: 1,
       });
@@ -111,66 +109,43 @@ export default function Crosshair({
 
     target.addEventListener("mousemove", onMouseMove as EventListener);
 
-    const primitiveValues = { turbulence: 0 };
-
-    const tl = gsap
-      .timeline({
-        paused: true,
-        onStart: () => {
-          if (lineHorizontalRef.current && lineVerticalRef.current) {
-            lineHorizontalRef.current.style.filter = `url(#filter-noise-x)`;
-            lineVerticalRef.current.style.filter = `url(#filter-noise-y)`;
-          }
-        },
-        onUpdate: () => {
-          if (filterXRef.current && filterYRef.current) {
-            filterXRef.current.setAttribute(
-              "baseFrequency",
-              String(primitiveValues.turbulence)
-            );
-            filterYRef.current.setAttribute(
-              "baseFrequency",
-              String(primitiveValues.turbulence)
-            );
-          }
-        },
-        onComplete: () => {
-          if (lineHorizontalRef.current && lineVerticalRef.current) {
-            lineHorizontalRef.current.style.filter = "none";
-            lineVerticalRef.current.style.filter = "none";
-          }
-        },
-      })
-      .to(primitiveValues, {
-        duration: 0.35,
-        ease: "power1.out",
-        startAt: { turbulence: 0.6 },
-        turbulence: 0,
-      });
-
-    // Dynamic Event Delegation — triggers glitch on all interactive + grouped elements
-    const isInteractive = (element: Element | null): boolean => {
-      if (!element) return false;
-      return Boolean(
-        element.closest(
-          "a, button, [role='button'], input, select, textarea, .group, [data-interactive='true'], .cursor-pointer"
-        )
-      );
+    // High-performance GPU Tactical Hover Pulse (0 SVG invalidation)
+    let isScrolling = false;
+    let scrollTimer: NodeJS.Timeout | null = null;
+    const handleScroll = () => {
+      isScrolling = true;
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        isScrolling = false;
+      }, 150);
     };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     let lastInteractiveEl: Element | null = null;
-    // Debounce tl.restart to prevent SVG filter thrashing when cursor moves fast inside a card
-    let restartScheduled = false;
-    const scheduleRestart = () => {
-      if (restartScheduled) return;
-      restartScheduled = true;
-      setTimeout(() => {
-        tl.restart();
-        restartScheduled = false;
-      }, 16); // ~1 frame debounce is enough to collapse rapid mouseover bursts
+
+    const triggerGlitchPulse = () => {
+      if (isScrolling || !lineHorizontalRef.current || !lineVerticalRef.current) return;
+      
+      gsap.killTweensOf([lineHorizontalRef.current, lineVerticalRef.current]);
+      
+      // Fast cybernetic flash & settle without touching DOM filters
+      gsap.timeline()
+        .to([lineHorizontalRef.current, lineVerticalRef.current], {
+          boxShadow: "0 0 12px rgba(255, 255, 255, 0.95)",
+          opacity: 1,
+          duration: 0.08,
+          ease: "power2.out",
+        })
+        .to([lineHorizontalRef.current, lineVerticalRef.current], {
+          boxShadow: "0 0 4px rgba(255, 255, 255, 0.4)",
+          opacity: 0.85,
+          duration: 0.15,
+          ease: "power1.inOut",
+        });
     };
 
     const handleMouseOver = (e: MouseEvent) => {
+      if (isScrolling) return;
       const el = e.target as Element | null;
       const interactiveParent = el?.closest(
         "a, button, [role='button'], input, select, textarea, .group, [data-interactive='true'], .cursor-pointer"
@@ -178,17 +153,12 @@ export default function Crosshair({
 
       if (interactiveParent && interactiveParent !== lastInteractiveEl) {
         lastInteractiveEl = interactiveParent;
-        scheduleRestart();
-        if (lineHorizontalRef.current && lineVerticalRef.current) {
-          gsap.to([lineHorizontalRef.current, lineVerticalRef.current], {
-            boxShadow: "0 0 10px rgba(255, 255, 255, 0.9)",
-            duration: 0.15,
-          });
-        }
+        triggerGlitchPulse();
       }
     };
 
     const handleMouseOut = (e: MouseEvent) => {
+      if (isScrolling) return;
       const el = e.target as Element | null;
       const related = e.relatedTarget as Element | null;
 
@@ -201,12 +171,6 @@ export default function Crosshair({
 
       if (currentInteractive && currentInteractive !== nextInteractive) {
         lastInteractiveEl = null;
-        if (lineHorizontalRef.current && lineVerticalRef.current) {
-          gsap.to([lineHorizontalRef.current, lineVerticalRef.current], {
-            boxShadow: "0 0 4px rgba(255, 255, 255, 0.4)",
-            duration: 0.2,
-          });
-        }
       }
     };
 
@@ -215,6 +179,8 @@ export default function Crosshair({
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      if (scrollTimer) clearTimeout(scrollTimer);
+      window.removeEventListener("scroll", handleScroll);
       target.removeEventListener("mousemove", handleMouseMove as EventListener);
       target.removeEventListener("mousemove", onMouseMove as EventListener);
       window.removeEventListener("mouseover", handleMouseOver);
@@ -235,36 +201,6 @@ export default function Crosshair({
         zIndex: 9999,
       }}
     >
-      <svg
-        style={{
-          position: "absolute",
-          left: 0,
-          top: 0,
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <defs>
-          <filter id="filter-noise-x">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.000001"
-              numOctaves={1}
-              ref={filterXRef}
-            />
-            <feDisplacementMap in="SourceGraphic" scale={24} />
-          </filter>
-          <filter id="filter-noise-y">
-            <feTurbulence
-              type="fractalNoise"
-              baseFrequency="0.000001"
-              numOctaves={1}
-              ref={filterYRef}
-            />
-            <feDisplacementMap in="SourceGraphic" scale={24} />
-          </filter>
-        </defs>
-      </svg>
       <div
         ref={lineHorizontalRef}
         style={{
@@ -275,6 +211,7 @@ export default function Crosshair({
           boxShadow: "0 0 4px rgba(255, 255, 255, 0.4)",
           pointerEvents: "none",
           transform: "translateY(50%)",
+          willChange: "transform, opacity, box-shadow",
           opacity: 0,
         }}
       />
@@ -288,6 +225,7 @@ export default function Crosshair({
           boxShadow: "0 0 4px rgba(255, 255, 255, 0.4)",
           pointerEvents: "none",
           transform: "translateX(50%)",
+          willChange: "transform, opacity, box-shadow",
           opacity: 0,
         }}
       />

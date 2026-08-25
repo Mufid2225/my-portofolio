@@ -111,7 +111,7 @@ export default function ProjectDetailPage() {
 
         <article className="space-y-8">
           {/* Main Terminal Window Gallery */}
-          <div className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 shadow-[0_12px_45px_rgba(0,0,0,0.75)] backdrop-blur-md">
+          <div className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 shadow-[0_12px_45px_rgba(0,0,0,0.75)]">
             {/* Terminal Window Header */}
             <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3 select-none">
               <div className="flex items-center gap-2">
@@ -208,7 +208,7 @@ export default function ProjectDetailPage() {
           </div>
 
           {/* Project Details Terminal Card */}
-          <div className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/85 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-md">
+          <div className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.6)]">
             {/* Header info */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
               <div>

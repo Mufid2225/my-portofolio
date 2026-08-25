@@ -201,7 +201,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.05 }}
-            className="md:col-span-1 flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md"
+            className="md:col-span-1 flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 shadow-[0_8px_30px_rgba(0,0,0,0.7)]"
           >
             {/* Terminal Window Header */}
             <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-3.5 py-2.5 select-none">
@@ -323,7 +323,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-2 flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md justify-between"
+            className="md:col-span-2 flex flex-col overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 p-6 sm:p-7 shadow-[0_8px_30px_rgba(0,0,0,0.7)] justify-between"
           >
             <div>
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4 select-none">
@@ -363,7 +363,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="md:col-span-2 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md"
+            className="md:col-span-2 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.7)]"
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5 select-none">
               <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
@@ -404,7 +404,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-1 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md"
+            className="md:col-span-1 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 p-5 shadow-[0_8px_30px_rgba(0,0,0,0.7)]"
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4 select-none">
               <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">
@@ -442,7 +442,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25 }}
-            className="md:col-span-3 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/90 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md"
+            className="md:col-span-3 overflow-hidden rounded-2xl border border-white/15 bg-zinc-950/95 p-6 shadow-[0_8px_30px_rgba(0,0,0,0.7)]"
           >
             <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-5 select-none">
               <div className="flex items-center gap-2 font-mono text-xs text-zinc-400">

@@ -32,7 +32,7 @@ function ProjectTerminalCard({ project, index, language, t }: TerminalCardProps)
       className="h-full"
     >
       <Link href={`/projects/${project.id}`} className="group block h-full">
-        <div className="flex h-full flex-col overflow-hidden rounded-xl border border-white/15 bg-zinc-950/90 shadow-[0_8px_30px_rgba(0,0,0,0.7)] backdrop-blur-md transition-all duration-300 hover:border-white/45 hover:shadow-[0_12px_40px_rgba(255,255,255,0.07)] hover:-translate-y-1">
+        <div className="flex h-full flex-col overflow-hidden rounded-xl border border-white/15 bg-zinc-950/95 shadow-[0_8px_30px_rgba(0,0,0,0.7)] transition-all duration-300 hover:border-white/45 hover:shadow-[0_12px_40px_rgba(255,255,255,0.07)] hover:-translate-y-1">
           {/* Terminal Window Header */}
           <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-3.5 py-2 transition-colors group-hover:bg-white/[0.06] select-none">
             <div className="flex items-center gap-1.5">
