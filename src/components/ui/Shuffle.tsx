@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState, useMemo, useCallback } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { gsap } from "gsap";
 
 export interface ShuffleProps {
@@ -56,7 +56,6 @@ export default function Shuffle({
   triggerOnHover = false,
 }: ShuffleProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const [ready, setReady] = useState(false);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
   const isPlayingRef = useRef(false);
   const hasTriggeredRef = useRef(false);
@@ -265,7 +264,6 @@ export default function Shuffle({
       }
 
       tlRef.current = tl;
-      setReady(true);
     });
   }, [
     text,
@@ -278,6 +276,7 @@ export default function Shuffle({
     loop,
     loopDelay,
     stagger,
+    delay,
     colorFrom,
     colorTo,
     respectReducedMotion,
@@ -335,9 +334,7 @@ export default function Shuffle({
     Tag,
     {
       ref: containerRef as unknown as React.Ref<never>,
-      className: `inline-block select-none ${
-        ready ? "opacity-100" : "opacity-100"
-      } ${className}`.trim(),
+      className: `inline-block select-none ${className}`.trim(),
       style: {
         textAlign,
         ...style,

@@ -10,8 +10,6 @@ export interface DitherProps {
   colorNum?: number;
   pixelSize?: number;
   disableAnimation?: boolean;
-  enableMouseInteraction?: boolean;
-  mouseRadius?: number;
   className?: string;
 }
 
@@ -139,15 +137,16 @@ function DitherComponent({
   colorNum = 4,
   pixelSize = 3,
   disableAnimation = false,
-  enableMouseInteraction = true,
-  mouseRadius = 0.4,
   className = "",
 }: DitherProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef    = useRef<HTMLCanvasElement>(null);
 
-  const pr = useRef({ waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius });
-  pr.current = { waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation, enableMouseInteraction, mouseRadius };
+  const pr = useRef({ waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation });
+
+  useEffect(() => {
+    pr.current = { waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation };
+  }, [waveSpeed, waveFrequency, waveAmplitude, waveColor, colorNum, pixelSize, disableAnimation]);
 
   useEffect(() => {
     const container = containerRef.current;

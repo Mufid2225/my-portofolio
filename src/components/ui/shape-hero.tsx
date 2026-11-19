@@ -14,8 +14,6 @@ export default function ShapeHero({
       <Dither
         waveColor={WAVE_COLOR}
         disableAnimation={false}
-        enableMouseInteraction={false}
-        mouseRadius={0.35}
         colorNum={4}
         waveAmplitude={0.35}
         waveFrequency={2.5}

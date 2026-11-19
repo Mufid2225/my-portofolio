@@ -1,39 +1,14 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { techStackItems, type TechStackItem } from "@/lib/data";
 import { useLanguage } from "@/context/LanguageContext";
 
-interface TechItem {
-  name: string;
-  src: string;
-}
+const row1 = techStackItems.filter((item) => item.row === 1);
+const row2 = techStackItems.filter((item) => item.row === 2);
 
-const row1: TechItem[] = [
-  { name: "Next.js", src: "/logo_carousel/nextjs.png" },
-  { name: "React", src: "/logo_carousel/react.png" },
-  { name: "TypeScript", src: "/logo_carousel/typescript.png" },
-  { name: "JavaScript", src: "/logo_carousel/js.png" },
-  { name: "Tailwind CSS", src: "/logo_carousel/tailwind.png" },
-  { name: "Electron", src: "/logo_carousel/electron.png" },
-  { name: "Python", src: "/logo_carousel/python.png" },
-  { name: "FastAPI", src: "/logo_carousel/fastapi.png" },
-  { name: "Bun", src: "/logo_carousel/bun.png" },
-];
-
-const row2: TechItem[] = [
-  { name: "Node.js", src: "/logo_carousel/nodejs.png" },
-  { name: "PostgreSQL", src: "/logo_carousel/postgre.png" },
-  { name: "MySQL", src: "/logo_carousel/mysql.png" },
-  { name: "SQLite", src: "/logo_carousel/sqlite.png" },
-  { name: "Redis", src: "/logo_carousel/redis.png" },
-  { name: "Docker", src: "/logo_carousel/docker.png" },
-  { name: "Git", src: "/logo_carousel/git.png" },
-  { name: "Ollama", src: "/logo_carousel/ollama.png" },
-];
-
-function TechChip({ tech }: { tech: TechItem }) {
+function TechChip({ tech }: { tech: TechStackItem }) {
   return (
     <div className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-zinc-900/90 px-4 py-2.5 shadow-[0_4px_16px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-white/40 hover:bg-zinc-800/90 hover:scale-105 hover:shadow-[0_8px_25px_rgba(255,255,255,0.08)] select-none">
       <div className="relative h-6 w-6 shrink-0 md:h-7 md:w-7">
@@ -58,7 +33,7 @@ export default function SkillsSection() {
   return (
     <section className="relative border-t border-border/40 px-4 py-24 overflow-hidden">
       {/* Background Subtle Ambient Glow */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-72 w-[600px] rounded-full bg-white/[0.02] blur-[120px]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.03),transparent_65%)]" />
 
       <div className="relative z-10 mx-auto max-w-6xl">
         {/* Section Header */}

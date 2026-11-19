@@ -46,7 +46,7 @@ Seluruh teks antarmuka menggunakan `font-mono`. Ini konsisten dari Navbar, Hero,
 / (home)           Single-page: Hero → Projects → Stack → Contact
 /projects          Grid 10 proyek (3 kolom)
 /projects/[id]     Detail proyek: galeri terminal + spesifikasi arsitektur
-/about             5-Bento Cyber-Window Grid
+/about             6-Bento Cyber-Window Grid
 ```
 
 ---
@@ -109,12 +109,13 @@ Seluruh teks antarmuka menggunakan `font-mono`. Ini konsisten dari Navbar, Hero,
 
 - Breadcrumb: `root > about`
 - Header: `01 // OPERATOR_PROFILE_BENTO`
-- **5-Bento Modular Grid** (3 kolom):
-  1. **`id://passport.tsx`** *(col 1)*: Avatar dengan 4 sudut bidik, lokasi, sosial, bahasa `[ID] [EN]`, Download CV
+- **6-Bento Modular Grid** (3 kolom):
+  1. **`id://passport.tsx`** *(col 1)*: Avatar dengan 4 sudut bidik, lokasi, sosial, bahasa `[ID] [EN]`, Download CV (atau Request CV via Email bila CV PDF belum dipasang)
   2. **`OPERATOR_NARRATIVE.md`** *(col 2-3)*: Bio `// 01 //` `// 02 //` `// 03 //` + quote terminal
   3. **`ACADEMIC_TRACK_RECORD`** *(col 1-2)*: 3 kartu grid sekolah dengan badge periode
-  4. **`CERTIFICATES`** *(col 3)*: Daftar sertifikat click-to-preview lightbox
-  5. **`FULL_STACK_ARSENAL`** *(col 1-3, full width)*: 17 keahlian dengan tag `[{tech}]` + ikon
+  4. **`CERTIFICATES`** *(col 3)*: Daftar sertifikat click-to-preview lightbox (dukungan keyboard + `Escape`)
+  5. **`INDUSTRY_EXPERIENCE`** *(col 1-3, full width)*: Catatan pengalaman magang di **JV. Partner Indonesia** (`rembox` / Supporta)
+  6. **`FULL_STACK_ARSENAL`** *(col 1-3, full width)*: 17 keahlian dengan tag `[{tech}]` + ikon
 
 ---
 

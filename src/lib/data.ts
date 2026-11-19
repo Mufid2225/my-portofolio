@@ -62,25 +62,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: "project-3",
-    title: "9Router",
-    description: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint untuk routing ke 40+ AI provider dengan smart fallback dan kompresi token, dihosting via Hugging Face",
-    longDescription: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint untuk routing ke 40+ AI provider dengan smart fallback dan kompresi token, dihosting via Hugging Face",
-    description_en: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint routing to 40+ AI providers with smart fallbacks and token compression, hosted on Hugging Face.",
-    longDescription_en: "FREE AI Router & Token Saver — single OpenAI-compatible endpoint for routing across 40+ AI providers with smart fallbacks and token compression, hosted on Hugging Face Spaces with SQLite database storage.",
-    image: "/projects/9router/1login-router.webp",
-    techStack: ["Next.js", "React", "Tailwind CSS", "SQLite", "Express"],
-    screenshots: [
-      "/projects/9router/2home-router.webp",
-      "/projects/9router/3provider-router.webp",
-      "/projects/9router/4model-router.webp",
-      "/projects/9router/5usage-router.webp",
-    ],
-    liveUrl: "https://neriss4-9router-database-demo.hf.space/",
-    githubUrl: "https://huggingface.co/spaces/Neriss4/9router-database-demo/tree/main",
-    featured: false,
-  },
-  {
     id: "project-4",
     title: "Kasir-App",
     description: "Aplikasi Point of Sale desktop untuk toko dan UMKM Indonesia dengan checkout, inventori, shift, laporan, serta pembayaran Tunai, Debit, dan QRIS.",
@@ -134,12 +115,12 @@ export const projects: Project[] = [
   {
     id: "project-6",
     title: "Profil GitHub",
-    description: "README profil GitHub dengan hero SVG responsif bertema terminal yang menyesuaikan desktop, mobile, light mode, dan dark mode.",
-    longDescription: "Profil GitHub personal dengan highlight hero SVG yang digenerasi melalui Node.js dan Sharp. Generator mengubah portrait menjadi ASCII art, lalu menyusun terminal-style identity dengan animasi typewriter, moving caret, scan beam, status indicator, serta metadata SVG yang aksesibel. Empat varian SVG untuk desktop/mobile dan light/dark theme dipilih otomatis melalui elemen picture. README juga merangkum fokus pengembangan, featured projects, categorized tech stack, dan kontak dalam tampilan yang konsisten.",
-    description_en: "Personal GitHub profile README featuring a responsive terminal-themed SVG hero adapting to desktop, mobile, light mode, and dark mode.",
-    longDescription_en: "Personal GitHub profile with a standout responsive SVG hero generated using Node.js and Sharp. The generator transforms portrait imagery into ASCII art, structuring a terminal-style identity with typewriter animations, scanning beams, status indicators, and accessible SVG metadata with automatic light/dark and mobile/desktop switching.",
+    description: "README profil GitHub dengan hero SVG bertema terminal & GitAscii responsif yang menyesuaikan light mode dan dark mode secara otomatis.",
+    longDescription: "Profil GitHub personal dengan hero SVG bertema terminal dan GitAscii yang digenerasi secara otomatis. Mendukung varian light dan dark theme melalui elemen HTML picture, lengkap dengan statistik aktivitas, fokus pengembangan, featured projects, tech stack, dan informasi kontak yang selalu sinkron via GitHub Actions.",
+    description_en: "Personal GitHub profile README featuring a responsive terminal & GitAscii SVG hero adapting automatically to light and dark modes.",
+    longDescription_en: "Personal GitHub profile with an automatically generated terminal and GitAscii SVG hero. Supports light and dark theme variants via the HTML picture element, paired with automated GitHub Actions workflows, development focus highlights, featured projects, tech stack, and contact details.",
     image: "/projects/profil-github/1hero.webp",
-    techStack: ["SVG", "JavaScript", "Node.js", "Sharp", "GitHub Markdown"],
+    techStack: ["SVG", "JavaScript", "Node.js", "Sharp", "GitHub Actions", "GitHub Markdown"],
     screenshots: [
       "/projects/profil-github/2aboutfocus.webp",
       "/projects/profil-github/3featured.webp",
@@ -153,12 +134,12 @@ export const projects: Project[] = [
   {
     id: "project-7",
     title: "Nerrisa Bot",
-    description: "Asisten AI Telegram privat untuk analisis pasar dan ekonomi, pencarian web, pengelolaan tugas sekolah, pemrosesan file, serta memory berbasis SQLite.",
-    longDescription: "Nerrisa Bot adalah asisten AI Telegram privat yang menggunakan 9router sebagai AI engine. Bot menggabungkan data Yahoo Finance, Alpha Vantage, dan Financial Modeling Prep untuk analisis saham, market, serta ekonomi global; memakai Tavily, NewsAPI, dan SerpAPI untuk pencarian web berjenjang; mengelola tugas sekolah dan reminder; memproses gambar melalui OCR serta mengekstrak PDF dan DOCX; dan menyimpan percakapan, memory, serta knowledge graph dalam SQLite. Akses perintah dibatasi ke Telegram user ID yang dikonfigurasi.",
-    description_en: "Private Telegram AI assistant for financial & economic analysis, web search, school task management, file processing, and SQLite-backed memory.",
-    longDescription_en: "Nerrisa Bot is a private Telegram AI assistant powered by 9router. The bot integrates Yahoo Finance, Alpha Vantage, and Financial Modeling Prep for market analysis; uses Tavily, NewsAPI, and SerpAPI for web search; manages homework reminders; processes OCR images and documents; and maintains conversations, memory, and knowledge graphs in SQLite.",
+    description: "Asisten AI Telegram privat berbasis OpenAI API dengan menu interaktif, MoneyTracker (Google Sheets), Google Calendar, Trello, Notion, Superhuman Docs, analisis saham/ekonomi, OCR/PDF, dan SQLite.",
+    longDescription: "Nerrisa Bot adalah asisten AI Telegram privat berbasis Node.js (ESM), Telegraf, dan OpenAI API. Dilengkapi menu inline interaktif (/menu) yang terhubung ke MoneyTracker (Google Sheets + grafik Chart.js), Google Calendar, Trello, Notion, Superhuman Docs, dan Knowledge Base lokal (read-only). Bot juga menggabungkan Yahoo Finance, Alpha Vantage, dan FMP untuk analisis saham & ekonomi makro, pencarian web berjenjang (Tavily, NewsAPI, SerpAPI), pemrosesan file OCR/PDF/DOCX, serta catatan, reminder, dan memori persisten di SQLite. Akses perintah dikunci ke Telegram user ID yang dikonfigurasi.",
+    description_en: "Private Telegram AI assistant powered by OpenAI API with interactive menus, MoneyTracker (Google Sheets), Google Calendar, Trello, Notion, Superhuman Docs, market analysis, OCR/PDF, and SQLite memory.",
+    longDescription_en: "Nerrisa Bot is a private Telegram AI assistant built with Node.js (ESM), Telegraf, and OpenAI API. It features an interactive inline /menu connected to MoneyTracker (Google Sheets + Chart.js visuals), Google Calendar, Trello, Notion, Superhuman Docs, and a read-only local Knowledge Base. It also integrates Yahoo Finance, Alpha Vantage, and FMP for market and macro analysis, tiered web search (Tavily, NewsAPI, SerpAPI), OCR/PDF/DOCX file extraction, and persistent SQLite notes, reminders, and memory.",
     image: "/projects/telegram-bot/1profil.webp",
-    techStack: ["JavaScript", "Node.js", "Telegraf", "SQLite", "9router", "Tesseract.js"],
+    techStack: ["JavaScript", "Node.js", "Telegraf", "OpenAI API", "SQLite", "Chart.js", "Tesseract.js"],
     screenshots: [
       "/projects/telegram-bot/2start.webp",
       "/projects/telegram-bot/3fitur.webp",
@@ -216,6 +197,18 @@ export const projects: Project[] = [
     featured: false,
     screenshots: [],
   },
+  {
+    id: "project-11",
+    title: "OPSIS",
+    description: "Antarmuka AI Agent Operations Console bergaya mission-control untuk memantau armada autonomous AI agent, tugas, biaya token, dan kontrol intervensi.",
+    longDescription: "OPSIS adalah eksperimen antarmuka produk lengkap (complete product interface) untuk konsol operasi AI agent. Terinspirasi dari ruang kendali aerospace dan terminal finansial profesional, OPSIS mencakup halaman Overview, manajemen fleet Agents beserta detail per-agent, pelacakan Tasks, shell navigasi Sidebar/Topbar responsif, dan sistem desain berbasis token Tailwind CSS v4 dengan data simulasi untuk prototyping UI.",
+    description_en: "Mission-control style AI Agent Operations Console UI for monitoring autonomous AI agent fleets, tasks, token costs, and intervention controls.",
+    longDescription_en: "OPSIS is a complete product interface design and frontend engineering project for an AI Agent Operations Console. Inspired by aerospace mission control and professional financial terminals, OPSIS covers Overview, Agent fleet management with per-agent drill-downs, Tasks tracking, responsive Sidebar/Topbar navigation, and a token-driven Tailwind CSS v4 design system backed by simulated operational data.",
+    image: "/projects/opsis/1hero.svg",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    featured: false,
+    screenshots: [],
+  },
 ];
 
 export function getProjectContent(project: Project, language: "id" | "en") {
@@ -226,33 +219,42 @@ export function getProjectContent(project: Project, language: "id" | "en") {
   };
 }
 
-export const skills = [
-  "Next.js",
-  "React",
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "Node.js",
-  "Bun",
-  "FastAPI",
-  "Tailwind CSS",
-  "Git",
-  "Electron",
-  "MySQL",
-  "SQLite",
-  "PostgreSQL",
-  "Redis",
-  "Docker",
-  "Ollama",
+export interface TechStackItem {
+  name: string;
+  src: string;
+  row: 1 | 2;
+}
+
+export const techStackItems: TechStackItem[] = [
+  { name: "Next.js", src: "/logo_carousel/nextjs.png", row: 1 },
+  { name: "React", src: "/logo_carousel/react.png", row: 1 },
+  { name: "TypeScript", src: "/logo_carousel/typescript.png", row: 1 },
+  { name: "JavaScript", src: "/logo_carousel/js.png", row: 1 },
+  { name: "Tailwind CSS", src: "/logo_carousel/tailwind.png", row: 1 },
+  { name: "Electron", src: "/logo_carousel/electron.png", row: 1 },
+  { name: "Python", src: "/logo_carousel/python.png", row: 1 },
+  { name: "FastAPI", src: "/logo_carousel/fastapi.png", row: 1 },
+  { name: "Bun", src: "/logo_carousel/bun.png", row: 1 },
+  { name: "Node.js", src: "/logo_carousel/nodejs.png", row: 2 },
+  { name: "PostgreSQL", src: "/logo_carousel/postgre.png", row: 2 },
+  { name: "MySQL", src: "/logo_carousel/mysql.png", row: 2 },
+  { name: "SQLite", src: "/logo_carousel/sqlite.png", row: 2 },
+  { name: "Redis", src: "/logo_carousel/redis.png", row: 2 },
+  { name: "Docker", src: "/logo_carousel/docker.png", row: 2 },
+  { name: "Git", src: "/logo_carousel/git.png", row: 2 },
+  { name: "Ollama", src: "/logo_carousel/ollama.png", row: 2 },
 ];
 
+export const skills: string[] = techStackItems.map((item) => item.name);
+
 export const socialLinks = {
-  email: "mufidarhaburizky08@gmail.com",
+  email: "mufidarhaburizky@gmail.com",
   github: "https://github.com/Mufid2225",
-  instagram: "https://www.instagram.com/fidnotpid_?igsh=MTNtdXlnZ3Q4MTZ6dQ==",
-  instagramUsername: "@fidnotpid_",
+  instagram: "https://www.instagram.com/fidnotpid_",
+  instagramUsername: "fidnotpid_",
   telegram: "https://t.me/liltrustcorner",
   telegramUsername: "1dleraa",
-  tiktok: "https://tiktok.com/@fidnotpid_",
-  spotify: "https://open.spotify.com/user/ukzr6gcxytbxxc6omkq7cw3yl?si=X9NzvxqFS8qjPj8pjpWe4A",
+  spotify: "https://open.spotify.com/user/ukzr6gcxytbxxc6omkq7cw3yl",
+  // Set to "/cv/cv-mufid.pdf" after placing your real CV PDF inside public/cv/
+  cvUrl: null as string | null,
 };
