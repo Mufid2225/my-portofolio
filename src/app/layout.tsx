@@ -49,14 +49,14 @@ export const metadata: Metadata = {
     description:
       "Frontend Developer yang mengeksplorasi web modern (Next.js, React, TypeScript) dan Artificial Intelligence.",
     siteName: "Mufid // Portfolio",
-    images: [{ url: "/profile/avatar.webp", alt: "Muhammad Mufid Arhaburrizky" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Muhammad Mufid Arhaburrizky — Frontend Developer" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Mufid Arhaburrizky — Portfolio",
     description:
       "Frontend Developer yang mengeksplorasi web modern (Next.js, React, TypeScript) dan Artificial Intelligence.",
-    images: ["/profile/avatar.webp"],
+    images: ["/og-image.png"],
   },
   icons: {
     icon: "/icons/logo_porto.png",

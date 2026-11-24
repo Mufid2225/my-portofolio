@@ -32,20 +32,14 @@
     "rights": "All rights reserved."
   },
   "about": {
-    "breadcrumb": "About",
     "title": "About",
     "highlight": "Me",
     "quote": "“Mencoba, belajar, dan berkembang.”",
     "p1": "Halo! Saya seorang Frontend Developer yang suka dalam mencoba berbagai macam hal dan saya memiliki ketertarikan tinggi pada teknologi, terutama pada Artificial Intelligence (AI) dan pengembangan web. Saya selalu bersemangat untuk belajar hal baru dan mengembangkan keterampilan saya dalam dunia teknologi.",
     "p2": "Saya mencoba mengembangkan bermacam - macam aplikasi web menggunakan teknologi terkini seperti Next.js, React, TypeScript, dan Tailwind CSS.",
     "p3": "Saya selalu tertarik untuk mempelajari teknologi baru dan menerapkannya dalam project untuk menambah pengalaman serta wawasan.",
-    "skillsTitle": "Skills & Technologies",
-    "educationTitle": "Pendidikan",
-    "certificatesTitle": "Piagam / Sertifikat",
-    "viewCertificate": "Lihat Sertifikat",
     "downloadCv": "Download CV",
     "requestCv": "Minta CV via Email",
-    "experienceTitle": "Pengalaman Industri",
     "experience": [
       {
         "period": "Jul — Agu 2026",
@@ -92,17 +86,20 @@
         "name": "Pelatihan Pemrograman PHP",
         "desc": "PHP Dasar Database MYSQLI Bootstrap",
         "image": "/certificates/phpdasar.webp"
+      },
+      {
+        "name": "TOEIC",
+        "desc": "Sertifikat kemampuan bahasa Inggris Listening and Reading — skor 720",
+        "image": "/certificates/toeic.webp"
       }
     ]
   },
   "projectsPage": {
-    "breadcrumb": "Projects",
     "title": "All",
     "highlight": "Projects",
     "subtitle": "Berikut adalah project-project yang pernah saya kerjakan / kontribusi."
   },
   "projectDetail": {
-    "backToProjects": "Projects",
     "liveDemo": "Live Demo",
     "sourceCode": "Source Code"
   }

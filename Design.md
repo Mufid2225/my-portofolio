@@ -16,7 +16,7 @@ Seluruh antarmuka dirancang seperti terminal developer: hitam pekat, teks putih 
 
 | Token | Value | Usage |
 |---|---|---|
-| `--background` | `oklch(0.145 0 0)` ≈ `#030303` | Latar belakang utama (jet-black) |
+| `--background` | `oklch(0.145 0 0)` ≈ `#252525` | Token surface dasar; jet-black `#030303` diterapkan lewat kelas komponen (mis. `bg-[#030303]`) |
 | `--foreground` | `oklch(0.985 0 0)` ≈ `#fafafa` | Teks utama |
 | `--card` | `oklch(0.205 0 0)` | Surface kartu |
 | `--muted` | `oklch(0.269 0 0)` | Muted background |
@@ -44,7 +44,7 @@ Seluruh teks antarmuka menggunakan `font-mono`. Ini konsisten dari Navbar, Hero,
 
 ```text
 / (home)           Single-page: Hero → Projects → Stack → Contact
-/projects          Grid 10 proyek (3 kolom)
+/projects          Grid 12 proyek (3 kolom)
 /projects/[id]     Detail proyek: galeri terminal + spesifikasi arsitektur
 /about             6-Bento Cyber-Window Grid
 ```
@@ -90,7 +90,7 @@ Seluruh teks antarmuka menggunakan `font-mono`. Ini konsisten dari Navbar, Hero,
 
 - Breadcrumb: `<Terminal /> root > projects`
 - Badge header: `terminal://mufid/all-projects`
-- Grid 10 kartu proyek, 3 kolom (lg)
+- Grid 12 kartu proyek, 3 kolom (lg)
 - Setiap kartu: **Cyber-Terminal Card Window** identik dengan Featured Projects
 - Hover: micro-lift (`-translate-y-1`) + border glow
 

@@ -24,6 +24,8 @@ terminal://mufid/design.md
 
 ## Project Showcase
 
+> Label `src/projects/project-N.tsx` pada tiap entri adalah header dekoratif bergaya terminal (identik dengan kartu proyek di situs). Data proyek sesungguhnya terpusat di `src/lib/data.ts`.
+
 ### SiPena
 ```
 src/projects/project-1.tsx  ·  branch: main
@@ -73,7 +75,7 @@ Website katalog tour and travel untuk menjelajahi paket wisata Malang, Batu, dan
 ```
 src/projects/project-6.tsx  ·  branch: main
 ```
-README profil GitHub dengan hero SVG bertema terminal & GitAscii responsif yang menyesuaikan light mode dan dark mode secara otomatis.
+README profil GitHub minimal yang seluruhnya berupa hero SVG GitAscii bertema terminal, digenerasi otomatis via GitHub Actions (workflow "Update GitAscii") dan beradaptasi ke light/dark mode lewat elemen picture.
 
 - Live: [github.com/Mufid2225](https://github.com/Mufid2225)
 - Source: [Mufid2225/Mufid2225](https://github.com/Mufid2225/Mufid2225)
@@ -136,6 +138,30 @@ Antarmuka AI Agent Operations Console bergaya mission-control untuk memantau arm
 
 ---
 
+### Kantor Agent Community
+```
+src/projects/project-12.tsx  ·  branch: main
+```
+Fork dari [humaedihume/kantor-agent](https://github.com/humaedihume/kantor-agent) (MIT) yang dikembangkan menjadi varian community: kantor 3D three.js dari transkrip AI coding agent lokal (read-only), dashboard Windows native tanpa WSL/Docker, dan dukungan Claude Code, OpenCode, Kiro, Antigravity IDE, serta Hermes.
+
+- Source (fork): [Mufid2225/kantor-agent-community](https://github.com/Mufid2225/kantor-agent-community)
+- Upstream: [humaedihume/kantor-agent](https://github.com/humaedihume/kantor-agent)
+- Stack: `[Three.js]` `[JavaScript]` `[Node.js]` `[PowerShell]` `[SQLite]` `[Claude Code Plugin]`
+
+---
+
+### OpenCode Workflow Companion
+```
+src/projects/project-13.tsx  ·  branch: main
+```
+Fork dari [rashidrazak/opencode-status-line](https://github.com/rashidrazak/opencode-status-line) (MIT) yang dikembangkan dengan fitur workflow OpenCode v2: session summaries lintas sesi, reusable instructions untuk sesi/subagent, MCP recovery, inventaris tools, dan shortcut PowerShell per proyek.
+
+- Source (fork): [Mufid2225/opencode-workflow-companion](https://github.com/Mufid2225/opencode-workflow-companion)
+- Upstream: [rashidrazak/opencode-status-line](https://github.com/rashidrazak/opencode-status-line)
+- Stack: `[OpenCode Plugin]` `[TypeScript]` `[SolidJS]` `[OpenTUI]` `[Bun]` `[PowerShell]`
+
+---
+
 ## Fitur Website
 
 ```text
@@ -145,7 +171,7 @@ Antarmuka AI Agent Operations Console bergaya mission-control untuk memantau arm
 // 04 // Contact — Terminal CLI Gateway (netstat) + Click-to-Copy
 // 05 // Footer — Developer System Status + Live WIB Clock + Quick Nav
 // 06 // Navbar — Monospace Brand + FPS Telemetry + [ID | EN] Language Toggle
-// 07 // Projects Page — Grid 10 Proyek + Terminal Breadcrumb
+// 07 // Projects Page — Grid 12 Proyek + Terminal Breadcrumb
 // 08 // Project Detail — Galeri Terminal + Thumbnail Filmstrip + Keyboard Nav
 // 09 // About — 6-Bento Cyber-Window Grid (Passport, Narrative, Academic, Certs, Experience, Arsenal)
 // 10 // Crosshair Cursor — Global Hover Glitch & Glow via Event Delegation
@@ -172,17 +198,21 @@ Antarmuka AI Agent Operations Console bergaya mission-control untuk memantau arm
 
 ```text
 public/
+├── .well-known/discord      File verifikasi domain Discord
 ├── certificates/            Gambar sertifikat (untuk lightbox preview)
 ├── icons/                   Logo aplikasi (logo_porto.png)
 ├── logo_carousel/           Ikon teknologi (17 aset)
-├── profile/                 Foto profil avatar.webp
-└── projects/                Screenshot proyek, dikelompokkan per proyek
+├── profile/                 Foto profil avatar.webp (foto GitHub terkini)
+├── projects/                Screenshot proyek, dikelompokkan per proyek
+├── favicon.ico              Fallback favicon browser
+└── og-image.png             OpenGraph/Twitter card 1200×630
 
 src/
 ├── app/
 │   ├── layout.tsx           Root layout (dark mode class, metadata, crosshair)
 │   ├── page.tsx             Homepage root
 │   ├── globals.css          Tailwind directives, keyframes marquee, terminal cursor
+│   ├── icon.png             Favicon via Next metadata
 │   ├── error.tsx            Error boundary (Monochrome Terminal)
 │   ├── not-found.tsx        Custom 404 (Monochrome Terminal)
 │   ├── robots.ts            Rules robots.txt dinamis
@@ -216,6 +246,8 @@ src/
 │       ├── shape-hero.tsx   Hero container wrapper
 │       ├── Shuffle.tsx      Shuffle text animation
 │       ├── social-icons.tsx Ikon SVG sosial bersama (GitHub, Instagram, Spotify)
+│       ├── badge.tsx        Bracket badge terminal
+│       ├── toast.tsx        Notifikasi toast
 │       ├── interactive-hover-button.tsx
 │       └── language-toggle.tsx
 │
@@ -223,8 +255,9 @@ src/
 │   └── LanguageContext.tsx  Provider i18n [ID | EN]
 │
 ├── lib/
-│   ├── data.ts              Data proyek (10), tech stack, dan social link
+│   ├── data.ts              Data proyek (12), tech stack, dan social link
 │   ├── debug.ts             Logger lokal ke localStorage
+│   ├── site.ts              Resolve URL produksi (NEXT_PUBLIC_SITE_URL / env Vercel)
 │   ├── translations.ts      Helper tipe & ekspor terjemahan
 │   └── utils.ts             Utility umum (cn, dsb.)
 │
@@ -241,7 +274,7 @@ Project ini **frontend-only** — tidak ada backend, database, autentikasi, atau
 
 ### Prasyarat
 
-- [Bun](https://bun.sh/) 1.3 atau lebih baru
+- [Bun](https://bun.sh/) 1.4 atau lebih baru
 
 ### Instalasi
 
@@ -284,3 +317,5 @@ terminal://mufid/contact.md
 - Email: [mufidarhaburizky@gmail.com](mailto:mufidarhaburizky@gmail.com)
 - GitHub: [@Mufid2225](https://github.com/Mufid2225)
 - Instagram: [@fidnotpid_](https://www.instagram.com/fidnotpid_/)
+- Telegram: [@1dleraa](https://t.me/1dleraa)
+- Spotify: [Mufid](https://open.spotify.com/user/ukzr6gcxytbxxc6omkq7cw3yl)

@@ -32,20 +32,14 @@
     "rights": "All rights reserved."
   },
   "about": {
-    "breadcrumb": "About",
     "title": "About",
     "highlight": "Me",
     "quote": "“Explore, learn, and evolve.”",
     "p1": "Hello! I am a Frontend Developer who loves experimenting with various things and has a strong passion for technology, especially in Artificial Intelligence (AI) and web development. I am always excited to learn new things and expand my skills in the tech world.",
     "p2": "I build and experiment with diverse web applications using modern technologies such as Next.js, React, TypeScript, and Tailwind CSS.",
     "p3": "I am consistently eager to explore emerging technologies and apply them in hands-on projects to deepen my experience and knowledge.",
-    "skillsTitle": "Skills & Technologies",
-    "educationTitle": "Education",
-    "certificatesTitle": "Certificates & Achievements",
-    "viewCertificate": "View Certificate",
     "downloadCv": "Download CV",
     "requestCv": "Request CV via Email",
-    "experienceTitle": "Industry Experience",
     "experience": [
       {
         "period": "Jul — Aug 2026",
@@ -92,17 +86,20 @@
         "name": "PHP Programming Training",
         "desc": "Basic PHP, MYSQLI Database & Bootstrap",
         "image": "/certificates/phpdasar.webp"
+      },
+      {
+        "name": "TOEIC",
+        "desc": "English Listening and Reading proficiency certificate — score 720",
+        "image": "/certificates/toeic.webp"
       }
     ]
   },
   "projectsPage": {
-    "breadcrumb": "Projects",
     "title": "All",
     "highlight": "Projects",
     "subtitle": "A comprehensive showcase of projects I've built and contributed to."
   },
   "projectDetail": {
-    "backToProjects": "Projects",
     "liveDemo": "Live Demo",
     "sourceCode": "Source Code"
   }
